@@ -1,550 +1,2430 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="CV en ligne de Stéphanie Vanschoor — Software Engineer, Data Engineer et IT Specialist.">
-<meta name="author" content="Stéphanie Vanschoor">
+
 <title>Stéphanie Vanschoor | Software Engineer · Data Engineer · IT Specialist</title>
 
+<meta name="description"
+      content="Portfolio professionnel de Stéphanie Vanschoor — Software Engineer, Data Engineer et IT Specialist.">
+
 <style>
-:root{
-  --bg:#f5f7fb;
-  --surface:#ffffff;
-  --surface-2:#eef2f7;
-  --text:#172033;
-  --muted:#687386;
-  --accent:#315efb;
-  --accent-2:#6941c6;
-  --border:#dfe5ee;
-  --shadow:0 18px 50px rgba(25,35,55,.09);
-  --radius:22px;
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --card2: #eef2f7;
+    --text: #172033;
+    --muted: #667085;
+    --primary: #3157d5;
+    --secondary: #7048e8;
+    --border: #dde3ec;
+    --shadow: 0 20px 50px rgba(20, 30, 60, .10);
+    --radius: 22px;
 }
-[data-theme="dark"]{
-  --bg:#0b1020;
-  --surface:#11182a;
-  --surface-2:#182238;
-  --text:#edf2ff;
-  --muted:#a8b2c7;
-  --accent:#7c9cff;
-  --accent-2:#a47cff;
-  --border:#26324a;
-  --shadow:0 18px 50px rgba(0,0,0,.28);
+
+body.dark {
+    --bg: #080d19;
+    --card: #111827;
+    --card2: #192235;
+    --text: #f5f7ff;
+    --muted: #a8b2c7;
+    --primary: #7d9bff;
+    --secondary: #a678ff;
+    --border: #273249;
+    --shadow: 0 20px 55px rgba(0,0,0,.35);
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.65;
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-a{color:inherit;text-decoration:none}
-.container{width:min(1160px,92%);margin:auto}
-.topbar{
-  position:sticky;top:0;z-index:100;
-  background:color-mix(in srgb,var(--surface) 88%,transparent);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
+
+html {
+    scroll-behavior: smooth;
 }
-.nav{
-  min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+
+body {
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    transition: .3s;
 }
-.logo{font-weight:900;letter-spacing:-.04em;font-size:1.15rem}
-.logo span{color:var(--accent)}
-.navlinks{display:flex;gap:20px;align-items:center}
-.navlinks a{font-size:.9rem;color:var(--muted);font-weight:650}
-.navlinks a:hover{color:var(--accent)}
-.actions{display:flex;gap:8px}
-.icon-btn{
-  border:1px solid var(--border);background:var(--surface);color:var(--text);
-  width:42px;height:42px;border-radius:12px;cursor:pointer;font-size:1rem;
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
-.hero{padding:90px 0 55px}
-.hero-grid{display:grid;grid-template-columns:1.5fr .7fr;gap:45px;align-items:center}
-.eyebrow{
-  color:var(--accent);font-size:.8rem;font-weight:850;letter-spacing:.16em;text-transform:uppercase;
+
+img {
+    max-width: 100%;
 }
-h1{font-size:clamp(2.8rem,7vw,5.8rem);line-height:.98;letter-spacing:-.065em;margin:14px 0 22px}
-.hero h1 span{display:block;color:var(--accent)}
-.hero-role{font-size:clamp(1rem,2vw,1.25rem);font-weight:750;margin-bottom:22px}
-.hero p{max-width:720px;color:var(--muted);font-size:1.04rem}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:12px 18px;border-radius:13px;border:1px solid var(--border);
-  font-weight:800;cursor:pointer;background:var(--surface);
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.container {
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
 }
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn:hover{transform:translateY(-1px)}
-.profile-card{
-  background:linear-gradient(145deg,var(--surface),var(--surface-2));
-  border:1px solid var(--border);border-radius:28px;padding:28px;box-shadow:var(--shadow);
-  text-align:center;
+
+section {
+    padding: 90px 0;
 }
-.avatar{
-  width:190px;height:190px;border-radius:50%;margin:0 auto 22px;
-  background:linear-gradient(145deg,var(--accent),var(--accent-2));
-  display:grid;place-items:center;color:white;font-size:4rem;font-weight:900;
-  border:7px solid var(--surface);
-  box-shadow:0 12px 35px rgba(49,94,251,.25);
+
+.section-title {
+    margin-bottom: 45px;
 }
-.avatar small{font-size:.75rem;display:block}
-.contact-mini{display:grid;gap:10px;text-align:left;margin-top:20px}
-.contact-mini div{padding:11px 13px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
-.contact-mini strong{display:block;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
-section{padding:70px 0}
-.section-head{margin-bottom:30px}
-.kicker{color:var(--accent);font-weight:850;font-size:.78rem;text-transform:uppercase;letter-spacing:.14em}
-h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.045em;margin:7px 0}
-.lead{color:var(--muted);max-width:760px}
-.card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  box-shadow:var(--shadow);padding:28px;
+
+.section-title span {
+    color: var(--primary);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: .8rem;
 }
-.about-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:22px}
-.highlights{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.highlight{padding:20px;border:1px solid var(--border);border-radius:16px;background:var(--surface-2)}
-.highlight b{font-size:1.7rem;display:block}
-.highlight span{color:var(--muted);font-size:.9rem}
-.timeline{display:grid;gap:18px}
-.timeline-item{position:relative;padding:25px 28px 25px 30px;border-left:3px solid var(--accent);background:var(--surface);border:1px solid var(--border);border-radius:0 var(--radius) var(--radius) 0;box-shadow:var(--shadow)}
-.date{color:var(--accent);font-size:.82rem;font-weight:850;text-transform:uppercase;letter-spacing:.06em}
-.timeline-item h3{margin:6px 0 2px;font-size:1.2rem}
-.company{font-weight:750;color:var(--muted)}
-.timeline-item ul{margin:15px 0 0;padding-left:20px}
-.timeline-item li{margin:5px 0}
-.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.skill{padding:18px;border:1px solid var(--border);border-radius:16px;background:var(--surface)}
-.skill-top{display:flex;justify-content:space-between;gap:15px;font-weight:800}
-.bar{height:8px;background:var(--surface-2);border-radius:20px;margin-top:10px;overflow:hidden}
-.bar i{display:block;height:100%;width:var(--level);background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:inherit}
-.tags{display:flex;flex-wrap:wrap;gap:9px}
-.tag{padding:8px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);font-size:.85rem;font-weight:700}
-.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.project{padding:25px;border:1px solid var(--border);border-radius:20px;background:var(--surface);box-shadow:var(--shadow)}
-.project-icon{font-size:1.7rem}
-.project h3{margin:10px 0 7px}
-.project p{color:var(--muted);margin:0}
-.project ul{padding-left:20px;margin-bottom:0}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.info-list{display:grid;gap:12px}
-.info-row{display:flex;justify-content:space-between;gap:15px;padding:12px 0;border-bottom:1px solid var(--border)}
-.info-row:last-child{border-bottom:0}
-.info-row span{color:var(--muted)}
-.availability{border:1px solid var(--border);background:linear-gradient(135deg,var(--surface),var(--surface-2));border-radius:24px;padding:30px}
-.availability strong{color:var(--accent)}
-footer{padding:35px 0;border-top:1px solid var(--border);color:var(--muted)}
-.footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.backtop{position:fixed;right:20px;bottom:20px;display:none}
-@media(max-width:850px){
-  .hero-grid,.about-grid,.two-col{grid-template-columns:1fr}
-  .hero{padding-top:55px}
-  .profile-card{max-width:520px;margin:auto}
-  .projects,.skills{grid-template-columns:1fr}
-  .navlinks{display:none}
+
+.section-title h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1;
+    margin: 8px 0;
+    letter-spacing: -2px;
 }
-@media(max-width:560px){
-  .container{width:min(94%,1160px)}
-  section{padding:50px 0}
-  .hero h1{font-size:3.2rem}
-  .highlights{grid-template-columns:1fr 1fr}
-  .card,.availability,.project,.timeline-item{padding:21px}
+
+.section-title p {
+    color: var(--muted);
+    max-width: 700px;
 }
-@media print{
-  .topbar,.actions,.cta,.backtop{display:none!important}
-  body{background:#fff;color:#111}
-  .card,.project,.timeline-item,.profile-card{box-shadow:none}
-  section{padding:25px 0}
-  a{text-decoration:none}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: color-mix(
+        in srgb,
+        var(--bg) 88%,
+        transparent
+    );
+
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
 }
+
+.navbar {
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: .9rem;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-button {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--border);
+    background: var(--card);
+
+    color: var(--text);
+
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 18px;
+
+    border-radius: 13px;
+
+    border: 1px solid var(--border);
+
+    font-weight: 800;
+    font-size: .9rem;
+
+    transition: .25s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.btn-secondary {
+    background: var(--card);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 90vh;
+
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+
+    gap: 60px;
+
+    align-items: center;
+}
+
+.badge {
+    display: inline-flex;
+
+    padding: 7px 13px;
+
+    border-radius: 999px;
+
+    background: var(--card2);
+    border: 1px solid var(--border);
+
+    color: var(--primary);
+
+    font-weight: 800;
+    font-size: .8rem;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 7vw, 6rem);
+
+    line-height: .95;
+
+    letter-spacing: -5px;
+
+    margin: 25px 0;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.hero-description {
+    color: var(--muted);
+
+    font-size: 1.1rem;
+
+    max-width: 700px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.profile-card {
+    padding: 25px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--card),
+            var(--card2)
+        );
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+.profile-picture {
+    height: 280px;
+
+    border-radius: 25px;
+
+    display: grid;
+    place-items: center;
+
+    color: white;
+
+    font-size: 5rem;
+
+    font-weight: 950;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+}
+
+.profile-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.profile-info div {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 14px;
+}
+
+.profile-info small {
+    color: var(--muted);
+
+    display: block;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.card {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 25px;
+
+    box-shadow:
+        0 10px 30px rgba(20,30,60,.04);
+
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--muted);
+}
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skill {
+    margin: 20px 0;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+
+    font-weight: 800;
+
+    font-size: .9rem;
+}
+
+.skill-bar {
+    height: 8px;
+
+    margin-top: 8px;
+
+    background: var(--card2);
+
+    border-radius: 99px;
+
+    overflow: hidden;
+}
+
+.skill-bar span {
+    display: block;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    border-radius: inherit;
+}
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.tags {
+    margin-top: 15px;
+}
+
+.tag {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    margin: 4px 3px 0 0;
+
+    border-radius: 999px;
+
+    background: var(--card2);
+
+    color: var(--primary);
+
+    font-size: .75rem;
+
+    font-weight: 800;
+}
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline {
+    border-left: 2px solid var(--border);
+
+    padding-left: 30px;
+}
+
+.timeline-item {
+    position: relative;
+
+    margin-bottom: 35px;
+}
+
+.timeline-item::before {
+    content: "";
+
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    left: -37px;
+    top: 8px;
+}
+
+.timeline-date {
+    color: var(--primary);
+
+    font-weight: 900;
+
+    font-size: .85rem;
+}
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.project {
+    min-height: 270px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.project-content {
+    flex: 1;
+}
+
+.project-links {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-top: 20px;
+}
+
+.project-links a {
+    color: var(--primary);
+
+    font-weight: 900;
+
+    font-size: .85rem;
+}
+
+/* =========================================================
+   NEXORA
+========================================================= */
+
+.nexora {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+
+    align-items: center;
+
+    padding: 35px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--card),
+            var(--card2)
+        );
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+.nexora-preview {
+    min-height: 300px;
+
+    border-radius: 25px;
+
+    display: grid;
+    place-items: center;
+
+    text-align: center;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d4ed8,
+            #7c3aed
+        );
+}
+
+.nexora-preview strong {
+    display: block;
+
+    font-size: 4rem;
+
+    letter-spacing: -5px;
+}
+
+.nexora-preview span {
+    font-weight: 800;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+.contact-card {
+    display: flex;
+
+    gap: 15px;
+
+    align-items: center;
+}
+
+.contact-icon {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    background: var(--card2);
+
+    font-size: 1.3rem;
+}
+
+.contact-card span {
+    display: block;
+
+    color: var(--muted);
+}
+
+/* =========================================================
+   AVAILABILITY
+========================================================= */
+
+.availability {
+    margin-top: 20px;
+
+    padding: 25px;
+
+    border-radius: 22px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+}
+
+.availability strong {
+    color: var(--primary);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 40px 0;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted);
+
+    font-size: .9rem;
+}
+
+.footer-content {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width: 950px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero,
+    .nexora {
+        grid-template-columns: 1fr;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media(max-width: 650px) {
+
+    .container {
+        width: min(
+            100% - 24px,
+            1180px
+        );
+    }
+
+    section {
+        padding: 65px 0;
+    }
+
+    .hero {
+        padding-top: 40px;
+    }
+
+    .hero h1 {
+        font-size: 3.3rem;
+        letter-spacing: -3px;
+    }
+
+    .grid,
+    .contact-grid,
+    .profile-info {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-picture {
+        height: 220px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+/* =========================================================
+   PRINT / PDF
+========================================================= */
+
+@media print {
+
+    header,
+    .hero-buttons,
+    .nav-buttons,
+    .project-links,
+    .btn {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: #111;
+    }
+
+    section {
+        padding: 25px 0;
+    }
+
+    .card,
+    .nexora,
+    .availability {
+        box-shadow: none;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
-<header class="topbar">
-  <div class="container nav">
-    <a class="logo" href="#accueil">SV<span>.</span></a>
-    <nav class="navlinks" aria-label="Navigation principale">
-      <a href="#profil">Profil</a>
-      <a href="#experience">Expérience</a>
-      <a href="#competences">Compétences</a>
-      <a href="#projets">Projets</a>
-      <a href="#formation">Formation</a>
-      <a href="#contact">Contact</a>
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header>
+
+<div class="container navbar">
+
+    <a href="#accueil" class="logo">
+        Stéphanie<span>.</span>
+    </a>
+
+    <nav class="nav-links">
+
+        <a href="#profil">Profil</a>
+
+        <a href="#competences">
+            Compétences
+        </a>
+
+        <a href="#experience">
+            Expérience
+        </a>
+
+        <a href="#projets">
+            Projets
+        </a>
+
+        <a href="#nexora">
+            Nexora
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
     </nav>
-    <div class="actions">
-      <button class="icon-btn" id="themeBtn" title="Changer le thème" aria-label="Changer le thème">◐</button>
-      <button class="icon-btn" onclick="window.print()" title="Télécharger / imprimer en PDF" aria-label="Télécharger le CV en PDF">↓</button>
+
+    <div class="nav-buttons">
+
+        <button
+            class="icon-button"
+            id="themeButton"
+            title="Changer le thème">
+
+            ☾
+
+        </button>
+
+        <button
+            class="icon-button"
+            onclick="window.print()"
+            title="Exporter en PDF">
+
+            PDF
+
+        </button>
+
     </div>
-  </div>
+
+</div>
+
 </header>
 
-<main>
-<section class="hero" id="accueil">
-  <div class="container hero-grid">
-    <div>
-      <div class="eyebrow">Disponible immédiatement · Wallonie & Bruxelles</div>
-      <h1>Stéphanie<br><span>Vanschoor.</span></h1>
-      <div class="hero-role">Software Engineer · Data Engineer · IT Specialist</div>
-      <p>
-        Python • Data Engineering • ETL • SQL • Linux • Windows • Cloud • DevOps • Cybersécurité
-      </p>
-      <div class="cta">
-        <a class="btn primary" href="#contact">Me contacter</a>
-        <a class="btn" href="#projets">Voir mes projets</a>
-        <a class="btn" href="https://github.com/stephanieleurquin" target="_blank" rel="noopener">GitHub ↗</a>
-      </div>
+
+<main id="accueil">
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+
+<section>
+
+<div class="container hero">
+
+<div>
+
+    <span class="badge">
+        ● Disponible immédiatement
+    </span>
+
+    <h1>
+        Software Engineer
+        <br>
+
+        <span>
+            Data Engineer
+        </span>
+
+        <br>
+
+        & IT Specialist
+    </h1>
+
+    <p class="hero-description">
+
+        Python • Data Engineering • ETL • Linux • Cloud • DevOps
+
+        <br><br>
+
+        Je développe des applications, APIs, pipelines de données,
+        dashboards et outils informatiques orientés vers des besoins
+        concrets.
+
+    </p>
+
+    <div class="hero-buttons">
+
+        <a
+            href="mailto:leurquinstephanie@gmail.com"
+            class="btn btn-primary">
+
+            ✉ Me contacter
+
+        </a>
+
+        <a
+            href="https://github.com/Stephanie-VanSchoor"
+            target="_blank"
+            class="btn btn-secondary">
+
+            GitHub ↗
+
+        </a>
+
+        <a
+            href="https://stephanie-vanschoor.github.io/Nexora/"
+            target="_blank"
+            class="btn btn-secondary">
+
+            Nexora ↗
+
+        </a>
+
     </div>
 
-    <aside class="profile-card">
-      <div class="avatar" aria-label="Photo à remplacer">SV</div>
-      <strong>Software Engineer</strong>
-      <div style="color:var(--muted)">Data · IT · Automation</div>
-      <div class="contact-mini">
-        <div><strong>Téléphone</strong><a href="tel:+32495932709">+32 495 93 27 09</a></div>
-        <div><strong>Email</strong><a href="mailto:leurquinstephanie@gmail.com">leurquinstephanie@gmail.com</a></div>
-      </div>
-    </aside>
-  </div>
+</div>
+
+
+<div class="profile-card">
+
+    <div class="profile-picture">
+        SV
+    </div>
+
+    <div class="profile-info">
+
+        <div>
+            <small>Spécialité</small>
+            <strong>Python / Data</strong>
+        </div>
+
+        <div>
+            <small>Backend</small>
+            <strong>Flask / API</strong>
+        </div>
+
+        <div>
+            <small>Data</small>
+            <strong>ETL / SQL</strong>
+        </div>
+
+        <div>
+            <small>DevOps</small>
+            <strong>Docker / CI/CD</strong>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
 </section>
+
+
+<!-- =======================================================
+     PROFIL
+======================================================= -->
 
 <section id="profil">
-  <div class="container">
-    <div class="section-head">
-      <div class="kicker">01 · Profil</div>
-      <h2>Une approche orientée données et solutions.</h2>
-    </div>
-    <div class="about-grid">
-      <article class="card">
-        <p>
-          Profil polyvalent combinant support informatique, administration systèmes,
-          développement Python et Data Engineering. Expérience dans le diagnostic
-          et la résolution d'incidents, l'automatisation des traitements, la création
-          de pipelines ETL, l'analyse de données et le développement d'applications web.
-        </p>
-        <p>
-          J'aime transformer un besoin concret en solution fiable, automatisée et
-          facilement exploitable, avec une attention particulière portée à la qualité,
-          à la sécurité et à la maintenabilité.
-        </p>
-      </article>
-      <div class="highlights">
-        <div class="highlight"><b>Python</b><span>Développement & Data</span></div>
-        <div class="highlight"><b>ETL</b><span>Pipelines automatisés</span></div>
-        <div class="highlight"><b>IT</b><span>Support & systèmes</span></div>
-        <div class="highlight"><b>DevOps</b><span>Docker & CI/CD</span></div>
-      </div>
-    </div>
-  </div>
+
+<div class="container">
+
+<div class="section-title">
+
+<span>01 — Profil</span>
+
+<h2>
+Profil professionnel
+</h2>
+
+<p>
+Un profil hybride entre développement logiciel,
+Data Engineering et support informatique.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+<article class="card">
+
+<h3>
+💻 Software Engineering
+</h3>
+
+<p>
+Développement Python, applications web,
+APIs REST, CRUD, automatisation et outils
+métiers.
+</p>
+
+</article>
+
+
+<article class="card">
+
+<h3>
+📊 Data Engineering
+</h3>
+
+<p>
+ETL, transformation de données, SQL,
+dashboards, analyse et automatisation
+de reporting.
+</p>
+
+</article>
+
+
+<article class="card">
+
+<h3>
+🖥 IT Specialist
+</h3>
+
+<p>
+Support informatique niveau 2,
+Linux, Windows, diagnostic, maintenance
+et résolution d'incidents.
+</p>
+
+</article>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="experience">
-  <div class="container">
-    <div class="section-head">
-      <div class="kicker">02 · Expérience</div>
-      <h2>Expérience professionnelle</h2>
-    </div>
-    <div class="timeline">
-      <article class="timeline-item">
-        <div class="date">2025 — aujourd'hui</div>
-        <h3>Technicienne Informatique</h3>
-        <div class="company">Support IT · Administration systèmes</div>
-        <ul>
-          <li>Support informatique utilisateurs de niveau 2.</li>
-          <li>Administration Linux et Windows.</li>
-          <li>Maintenance des postes de travail.</li>
-          <li>Diagnostic et résolution d'incidents.</li>
-          <li>Optimisation des systèmes informatiques.</li>
-          <li>Assistance technique aux utilisateurs.</li>
-        </ul>
-      </article>
 
-      <article class="timeline-item">
-        <div class="date">2022 — 2025</div>
-        <h3>Projets Data Engineering & développement</h3>
-        <div class="company">Python · Data · Automation</div>
-        <ul>
-          <li>Développement d'applications en Python.</li>
-          <li>Analyse et traitement de données avec Pandas / NumPy.</li>
-          <li>Création de pipelines ETL.</li>
-          <li>Requêtes et gestion de bases de données SQL.</li>
-          <li>Dashboards et visualisation de données.</li>
-          <li>Automatisation de tâches et reporting CSV / Excel.</li>
-          <li>Docker et développement d'applications Streamlit.</li>
-          <li>Support IT et administration Linux / Windows.</li>
-          <li>Analyse d'anomalies et notions de Machine Learning.</li>
-        </ul>
-      </article>
-
-      <article class="timeline-item">
-        <div class="date">2009 — 2013</div>
-        <h3>Conseillère en Communication d'Entreprise</h3>
-        <div class="company">Bruxelles</div>
-      </article>
-    </div>
-  </div>
-</section>
+<!-- =======================================================
+     COMPETENCES
+======================================================= -->
 
 <section id="competences">
-  <div class="container">
-    <div class="section-head">
-      <div class="kicker">03 · Expertise</div>
-      <h2>Compétences techniques</h2>
-    </div>
-    <div class="skills">
-      <div class="skill"><div class="skill-top"><span>GitHub</span><span>92%</span></div><div class="bar"><i style="--level:92%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>Machine Learning avec Python</span><span>92%</span></div><div class="bar"><i style="--level:92%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>Pandas</span><span>95%</span></div><div class="bar"><i style="--level:95%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>Data Analytics</span><span>88%</span></div><div class="bar"><i style="--level:88%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>Cybersécurité</span><span>88%</span></div><div class="bar"><i style="--level:88%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>Python Data Science</span><span>86%</span></div><div class="bar"><i style="--level:86%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>DevOps</span><span>84%</span></div><div class="bar"><i style="--level:84%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>Jenkins</span><span>84%</span></div><div class="bar"><i style="--level:84%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>SQL</span><span>80%</span></div><div class="bar"><i style="--level:80%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>NumPy</span><span>80%</span></div><div class="bar"><i style="--level:80%"></i></div></div>
-    </div>
 
-    <div class="card" style="margin-top:20px">
-      <h3>Stack technique</h3>
-      <div class="tags">
-        <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
-        <span class="tag">SQL</span><span class="tag">SQLite</span><span class="tag">PostgreSQL</span>
-        <span class="tag">Flask</span><span class="tag">Streamlit</span><span class="tag">Docker</span>
-        <span class="tag">GitHub Actions</span><span class="tag">Jenkins</span><span class="tag">Linux</span>
-        <span class="tag">Windows</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
-        <span class="tag">Plotly</span><span class="tag">REST API</span><span class="tag">Swagger</span>
-        <span class="tag">Postman</span><span class="tag">Machine Learning</span>
-        <span class="tag">Cybersécurité</span>
-      </div>
-    </div>
-  </div>
+<div class="container">
+
+<div class="section-title">
+
+<span>02 — Compétences</span>
+
+<h2>
+Stack technique
+</h2>
+
+<p>
+Principales compétences développées à travers
+mes formations et projets.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<!-- DATA -->
+
+<article class="card">
+
+<h3>
+🐍 Python & Data
+</h3>
+
+
+<div class="skill">
+
+<div class="skill-header">
+<span>Pandas</span>
+<span>95%</span>
+</div>
+
+<div class="skill-bar">
+<span style="width:95%"></span>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-header">
+<span>Machine Learning Python</span>
+<span>92%</span>
+</div>
+
+<div class="skill-bar">
+<span style="width:92%"></span>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-header">
+<span>Data Analytics</span>
+<span>88%</span>
+</div>
+
+<div class="skill-bar">
+<span style="width:88%"></span>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-header">
+<span>Python Data Science</span>
+<span>86%</span>
+</div>
+
+<div class="skill-bar">
+<span style="width:86%"></span>
+</div>
+
+</div>
+
+</article>
+
+
+<!-- DEVOPS -->
+
+<article class="card">
+
+<h3>
+⚙️ DevOps & Backend
+</h3>
+
+
+<div class="skill">
+
+<div class="skill-header">
+<span>GitHub</span>
+<span>92%</span>
+</div>
+
+<div class="skill-bar">
+<span style="width:92%"></span>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-header">
+<span>DevOps</span>
+<span>84%</span>
+</div>
+
+<div class="skill-bar">
+<span style="width:84%"></span>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-header">
+<span>Jenkins</span>
+<span>84%</span>
+</div>
+
+<div class="skill-bar">
+<span style="width:84%"></span>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-header">
+<span>SQL</span>
+<span>80%</span>
+</div>
+
+<div class="skill-bar">
+<span style="width:80%"></span>
+</div>
+
+</div>
+
+</article>
+
+
+<!-- TECHNO -->
+
+<article class="card">
+
+<h3>
+🧰 Technologies
+</h3>
+
+<div class="tags">
+
+<span class="tag">Python</span>
+<span class="tag">Pandas</span>
+<span class="tag">NumPy</span>
+<span class="tag">SQL</span>
+
+<span class="tag">Flask</span>
+<span class="tag">Streamlit</span>
+<span class="tag">Docker</span>
+<span class="tag">GitHub Actions</span>
+
+<span class="tag">Linux</span>
+<span class="tag">Windows</span>
+<span class="tag">REST API</span>
+
+<span class="tag">SQLite</span>
+<span class="tag">PostgreSQL</span>
+
+<span class="tag">Matplotlib</span>
+<span class="tag">Plotly</span>
+
+<span class="tag">Cybersécurité</span>
+
+</div>
+
+</article>
+
+</div>
+
+</div>
+
 </section>
+
+
+<!-- =======================================================
+     EXPERIENCE
+======================================================= -->
+
+<section id="experience">
+
+<div class="container">
+
+<div class="section-title">
+
+<span>03 — Parcours</span>
+
+<h2>
+Expérience & Formation
+</h2>
+
+</div>
+
+
+<div class="grid">
+
+
+<!-- EXPERIENCE -->
+
+<div class="card timeline">
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+2025 — Aujourd'hui
+</div>
+
+<h3>
+Technicienne Informatique
+</h3>
+
+<p>
+
+Support informatique utilisateurs niveau 2.
+
+<br>
+Administration Linux et Windows.
+
+<br>
+Maintenance des postes de travail.
+
+<br>
+Diagnostic et résolution d'incidents.
+
+<br>
+Optimisation des systèmes.
+
+<br>
+Assistance technique.
+
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+2022 — 2025
+</div>
+
+<h3>
+Projets Data Engineering
+</h3>
+
+<p>
+
+Développement Python.
+
+<br>
+Pandas / NumPy.
+
+<br>
+ETL et bases SQL.
+
+<br>
+Dashboards et visualisation.
+
+<br>
+Automatisation CSV / Excel.
+
+<br>
+Docker / Streamlit.
+
+<br>
+Machine Learning et détection d'anomalies.
+
+<br>
+APIs REST et cybersécurité.
+
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+2009 — 2013
+</div>
+
+<h3>
+Conseillère en Communication d'Entreprise
+</h3>
+
+<p>
+Bruxelles.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- FORMATION -->
+
+<div class="card timeline">
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+2024 — Aujourd'hui
+</div>
+
+<h3>
+Technicien en Informatique
+</h3>
+
+<p>
+ECI — Liège
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+2024
+</div>
+
+<h3>
+Formation Webmaster
+</h3>
+
+<p>
+St-Laurent — Liège
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+2009 — 2013
+</div>
+
+<h3>
+Bachelier Communication d'Entreprise
+</h3>
+
+<p>
+Bruxelles.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+2005
+</div>
+
+<h3>
+7ème Professionnelle
+</h3>
+
+<p>
+Organisatrice de banquet — Liège.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     PROJETS
+======================================================= -->
 
 <section id="projets">
-  <div class="container">
-    <div class="section-head">
-      <div class="kicker">04 · Portfolio</div>
-      <h2>Projets sélectionnés</h2>
-      <p class="lead">Une sélection de projets orientés Data, automatisation, cybersécurité et développement d'applications.</p>
-    </div>
 
-    <div class="projects">
-      <article class="project">
-        <div class="project-icon">🐳</div>
-        <h3>ETL Pipeline — Python + Docker</h3>
-        <p>Pipeline ETL automatisé pour traiter et structurer des données.</p>
-        <ul><li>Import CSV</li><li>Nettoyage & transformation</li><li>Export structuré</li><li>Reporting</li></ul>
-      </article>
+<div class="container">
 
-      <article class="project">
-        <div class="project-icon">🤖</div>
-        <h3>Fraud Detection App</h3>
-        <p>Application Python de détection d'anomalies basée sur le Machine Learning.</p>
-        <ul><li>Analyse des transactions</li><li>Détection de fraude</li><li>Score de risque</li><li>Interface Streamlit</li></ul>
-      </article>
+<div class="section-title">
 
-      <article class="project">
-        <div class="project-icon">📊</div>
-        <h3>Crypto Dashboard</h3>
-        <p>Dashboard Streamlit connecté à l'API CoinGecko.</p>
-        <ul><li>Prix en temps réel</li><li>Graphiques interactifs</li><li>Analyse des cryptomonnaies</li></ul>
-      </article>
+<span>04 — Portfolio</span>
 
-      <article class="project">
-        <div class="project-icon">🏠</div>
-        <h3>Real Estate Dashboard</h3>
-        <p>Dashboard interactif consacré à l'analyse du marché immobilier.</p>
-        <ul><li>Prix</li><li>Statistiques</li><li>Analyse du marché</li><li>Visualisations</li></ul>
-      </article>
+<h2>
+Projets & logiciels
+</h2>
 
-      <article class="project">
-        <div class="project-icon">🛡️</div>
-        <h3>CyberAppCert</h3>
-        <p>Application de cybersécurité pour l'analyse de certificats et d'URL.</p>
-        <ul><li>Certificats .pem, .crt, .cer</li><li>Vérification SSL</li><li>Contrôle d'URL</li><li>Vérification d'e-mails</li></ul>
-      </article>
+<p>
+Une sélection de projets publics disponibles sur mon GitHub.
+</p>
 
-      <article class="project">
-        <div class="project-icon">⚙️</div>
-        <h3>Reporting Automation</h3>
-        <p>Automatisation de traitements et génération de rapports Excel et CSV.</p>
-        <ul><li>Traitements automatisés</li><li>Exports Excel / CSV</li><li>Reporting récurrent</li></ul>
-      </article>
+</div>
 
-      <article class="project">
-        <div class="project-icon">📄</div>
-        <h3>Générateur de CV & lettres</h3>
-        <p>Application permettant de générer automatiquement des CV et lettres de motivation.</p>
-        <ul><li>Génération de CV</li><li>Lettres de motivation</li><li>Export PDF</li></ul>
-      </article>
 
-      <article class="project">
-        <div class="project-icon">🧰</div>
-        <h3>Assistant IT Pro</h3>
-        <p>Application de dépannage informatique destinée aux équipes support IT.</p>
-        <ul>
-          <li>Architecture MVC</li><li>SQLite avec 200+ diagnostics</li>
-          <li>Authentification</li><li>Streamlit</li><li>Rapports PDF / Word</li>
-          <li>PyInstaller</li><li>Plans Gratuit / Pro / Business</li>
-          <li>Recherche full-text</li>
-        </ul>
-      </article>
-    </div>
+<div class="grid">
 
-    <div class="card" style="margin-top:20px">
-      <h3>API REST & DevOps</h3>
-      <p class="lead">Conception d'API RESTful avec Flask et intégration des pratiques de déploiement.</p>
-      <div class="tags">
-        <span class="tag">GET</span><span class="tag">POST</span><span class="tag">PUT</span><span class="tag">DELETE</span>
-        <span class="tag">Gestion des erreurs HTTP</span><span class="tag">Authentification</span>
-        <span class="tag">Swagger</span><span class="tag">Postman</span><span class="tag">cURL</span>
-        <span class="tag">Insomnia</span><span class="tag">SQLite / PostgreSQL</span>
-        <span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">CI/CD</span>
-      </div>
-    </div>
-  </div>
+
+<!-- PROJECT -->
+
+<article class="card project">
+
+<div class="project-content">
+
+<h3>
+Data Engineering ETL Tool
+</h3>
+
+<p>
+Pipeline ETL développé en Python pour le
+traitement et la transformation de données.
+</p>
+
+<div class="tags">
+<span class="tag">Python</span>
+<span class="tag">ETL</span>
+<span class="tag">Data</span>
+</div>
+
+</div>
+
+<div class="project-links">
+
+<a
+href="https://github.com/Stephanie-VanSchoor/Data-Engineering-ETL-Tool"
+target="_blank">
+
+Voir le code ↗
+
+</a>
+
+</div>
+
+</article>
+
+
+<!-- FRAUD -->
+
+<article class="card project">
+
+<div class="project-content">
+
+<h3>
+Fraud Detection
+</h3>
+
+<p>
+Application d'analyse de transactions,
+détection de fraude et calcul d'un score
+de risque.
+</p>
+
+<div class="tags">
+
+<span class="tag">Machine Learning</span>
+<span class="tag">Python</span>
+<span class="tag">Streamlit</span>
+
+</div>
+
+</div>
+
+<div class="project-links">
+
+<a
+href="https://github.com/Stephanie-VanSchoor/Fraude-Application"
+target="_blank">
+
+Voir le code ↗
+
+</a>
+
+</div>
+
+</article>
+
+
+<!-- BI -->
+
+<article class="card project">
+
+<div class="project-content">
+
+<h3>
+Business Intelligence
+</h3>
+
+<p>
+Dashboard orienté analyse et visualisation
+des données d'entreprise.
+</p>
+
+<div class="tags">
+
+<span class="tag">BI</span>
+<span class="tag">Data</span>
+<span class="tag">Dashboard</span>
+
+</div>
+
+</div>
+
+<div class="project-links">
+
+<a
+href="https://github.com/Stephanie-VanSchoor/Business-Intelligence-2026"
+target="_blank">
+
+Voir le code ↗
+
+</a>
+
+</div>
+
+</article>
+
+
+<!-- WEATHER -->
+
+<article class="card project">
+
+<div class="project-content">
+
+<h3>
+Real-Time Weather ETL
+</h3>
+
+<p>
+Pipeline météo avec traitement des données,
+SQLite et dashboard Streamlit.
+</p>
+
+<div class="tags">
+
+<span class="tag">ETL</span>
+<span class="tag">SQLite</span>
+<span class="tag">Streamlit</span>
+
+</div>
+
+</div>
+
+<div class="project-links">
+
+<a
+href="https://github.com/Stephanie-VanSchoor/Real-Time-Weather-ETL-Pipeline-with-SQLite-Streamlit-Dashboard"
+target="_blank">
+
+Voir le code ↗
+
+</a>
+
+</div>
+
+</article>
+
+
+<!-- CYBER -->
+
+<article class="card project">
+
+<div class="project-content">
+
+<h3>
+Cyber App Cert
+</h3>
+
+<p>
+Application d'analyse et de vérification
+de certificats SSL.
+</p>
+
+<div class="tags">
+
+<span class="tag">Cybersecurity</span>
+<span class="tag">SSL</span>
+<span class="tag">Python</span>
+
+</div>
+
+</div>
+
+<div class="project-links">
+
+<a
+href="https://github.com/Stephanie-VanSchoor/Cyber-app-Cert"
+target="_blank">
+
+Voir le code ↗
+
+</a>
+
+</div>
+
+</article>
+
+
+<!-- CRM -->
+
+<article class="card project">
+
+<div class="project-content">
+
+<h3>
+CRM API
+</h3>
+
+<p>
+API développée en Python autour de la
+gestion de données CRM.
+</p>
+
+<div class="tags">
+
+<span class="tag">Python</span>
+<span class="tag">REST API</span>
+
+</div>
+
+</div>
+
+<div class="project-links">
+
+<a
+href="https://github.com/Stephanie-VanSchoor/CRM-API"
+target="_blank">
+
+Voir le code ↗
+
+</a>
+
+</div>
+
+</article>
+
+
+<!-- TASK FLOW -->
+
+<article class="card project">
+
+<div class="project-content">
+
+<h3>
+Task Flow PySide6
+</h3>
+
+<p>
+Application desktop de gestion des tâches
+développée avec Python et PySide6.
+</p>
+
+<div class="tags">
+
+<span class="tag">Python</span>
+<span class="tag">PySide6</span>
+<span class="tag">Desktop</span>
+
+</div>
+
+</div>
+
+<div class="project-links">
+
+<a
+href="https://github.com/Stephanie-VanSchoor/Task-Flow-PYSIDE6"
+target="_blank">
+
+Voir le code ↗
+
+</a>
+
+</div>
+
+</article>
+
+
+<!-- CV TOOLS -->
+
+<article class="card project">
+
+<div class="project-content">
+
+<h3>
+CV Tools
+</h3>
+
+<p>
+Outil de génération automatique de CV,
+lettres et export PDF.
+</p>
+
+<div class="tags">
+
+<span class="tag">Python</span>
+<span class="tag">PDF</span>
+<span class="tag">Automation</span>
+
+</div>
+
+</div>
+
+<div class="project-links">
+
+<a
+href="https://github.com/Stephanie-VanSchoor/cvtools"
+target="_blank">
+
+Voir le code ↗
+
+</a>
+
+</div>
+
+</article>
+
+
+<!-- DASHBOARD -->
+
+<article class="card project">
+
+<div class="project-content">
+
+<h3>
+Dashboard Data Engineering
+</h3>
+
+<p>
+Projet de visualisation et d'analyse de
+données orienté Data Engineering.
+</p>
+
+<div class="tags">
+
+<span class="tag">Data</span>
+<span class="tag">Python</span>
+<span class="tag">Dashboard</span>
+
+</div>
+
+</div>
+
+<div class="project-links">
+
+<a
+href="https://github.com/Stephanie-VanSchoor/Dasboard-Data-Ingenering"
+target="_blank">
+
+Voir le code ↗
+
+</a>
+
+</div>
+
+</article>
+
+
+<!-- WEATHER API -->
+
+<article class="card project">
+
+<div class="project-content">
+
+<h3>
+Weather API
+</h3>
+
+<p>
+Projet d'exploitation d'API météo et de
+traitement de données.
+</p>
+
+<div class="tags">
+
+<span class="tag">API</span>
+<span class="tag">Python</span>
+<span class="tag">Data</span>
+
+</div>
+
+</div>
+
+<div class="project-links">
+
+<a
+href="https://github.com/Stephanie-VanSchoor/API-Weather"
+target="_blank">
+
+Voir le code ↗
+
+</a>
+
+</div>
+
+</article>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="formation">
-  <div class="container">
-    <div class="section-head">
-      <div class="kicker">05 · Formation</div>
-      <h2>Parcours</h2>
-    </div>
-    <div class="two-col">
-      <article class="card">
-        <h3>Formation de Technicien en Informatique</h3>
-        <p class="lead">ECI · Liège</p>
-        <strong>2024 — aujourd'hui</strong>
-      </article>
-      <article class="card">
-        <h3>Formation de Webmaster</h3>
-        <p class="lead">St-Laurent · Liège</p>
-        <strong>2024</strong>
-      </article>
-      <article class="card">
-        <h3>Bachelier en Communication d'Entreprise</h3>
-        <p class="lead">Bruxelles</p>
-        <strong>2009 — 2013</strong>
-      </article>
-      <article class="card">
-        <h3>7ème professionnelle — Organisatrice de banquet</h3>
-        <p class="lead">Liège</p>
-        <strong>2005</strong>
-      </article>
-    </div>
-  </div>
+
+<!-- =======================================================
+     NEXORA
+======================================================= -->
+
+<section id="nexora">
+
+<div class="container">
+
+<div class="section-title">
+
+<span>05 — Projet phare</span>
+
+<h2>
+Nexora
+</h2>
+
+<p>
+Marketplace digitale développée comme projet
+logiciel personnel.
+</p>
+
+</div>
+
+
+<div class="nexora">
+
+
+<div class="nexora-preview">
+
+<div>
+
+<strong>
+NEXORA
+</strong>
+
+<span>
+Digital Marketplace
+</span>
+
+</div>
+
+</div>
+
+
+<div>
+
+<span class="badge">
+Projet personnel
+</span>
+
+<h2 style="margin:20px 0">
+
+Marketplace digitale
+
+</h2>
+
+<p style="color:var(--muted)">
+
+Nexora est un projet web qui illustre mes
+compétences en développement logiciel,
+gestion de produits, authentification,
+stockage et architecture web.
+
+</p>
+
+
+<div class="tags">
+
+<span class="tag">HTML</span>
+<span class="tag">JavaScript</span>
+<span class="tag">Supabase</span>
+<span class="tag">Marketplace</span>
+<span class="tag">Web App</span>
+
+</div>
+
+
+<div class="hero-buttons">
+
+<a
+href="https://stephanie-vanschoor.github.io/Nexora/"
+target="_blank"
+class="btn btn-primary">
+
+🚀 Ouvrir Nexora
+
+</a>
+
+
+<a
+href="https://github.com/Stephanie-VanSchoor/Nexora"
+target="_blank"
+class="btn btn-secondary">
+
+⌘ Code source
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
+
+
+<!-- =======================================================
+     GITHUB
+======================================================= -->
 
 <section>
-  <div class="container">
-    <div class="two-col">
-      <article class="card">
-        <div class="kicker">06 · Langues</div>
-        <h2 style="font-size:2rem">Langues</h2>
-        <div class="info-list">
-          <div class="info-row"><strong>English</strong><span>B1 · compréhension, écriture, lecture</span></div>
-          <div class="info-row"><strong>Spanish</strong><span>A1 · compréhension</span></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="kicker">Qualités</div>
-        <h2 style="font-size:2rem">Atouts</h2>
-        <div class="tags">
-          <span class="tag">Esprit analytique</span><span class="tag">Rigueur</span>
-          <span class="tag">Organisation</span><span class="tag">Autonomie</span>
-          <span class="tag">Curiosité</span><span class="tag">Résolution de problèmes</span>
-        </div>
-      </article>
-    </div>
-  </div>
+
+<div class="container">
+
+<div class="section-title">
+
+<span>06 — GitHub</span>
+
+<h2>
+Mon portfolio développeur
+</h2>
+
+<p>
+L'ensemble de mes projets publics, expérimentations
+et réalisations techniques sont disponibles sur GitHub.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Stéphanie Vanschoor
+</h3>
+
+<p style="margin:10px 0 20px">
+
+Python · Data Engineering · ETL · APIs ·
+Dashboards · IT · Linux · DevOps · Machine Learning
+
+</p>
+
+
+<a
+href="https://github.com/Stephanie-VanSchoor"
+target="_blank"
+class="btn btn-primary">
+
+Voir mon GitHub ↗
+
+</a>
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- =======================================================
+     LANGUES / QUALITES
+======================================================= -->
+
 <section>
-  <div class="container">
-    <div class="availability">
-      <div class="kicker">07 · Disponibilité</div>
-      <h2>Prête pour un nouveau défi.</h2>
-      <p>
-        <strong>Disponible immédiatement.</strong> Mobile en Wallonie et à Bruxelles.
-        Disponible pour un CDI, CDD, contrat Article 60, Article 61, stage ou formation en entreprise.
-      </p>
-      <p>
-        Éligible aux dispositifs d'aide à l'emploi <strong>Article 60 §7 et Article 61</strong>,
-        sous réserve de l'accord du CPAS.
-      </p>
-    </div>
-  </div>
+
+<div class="container">
+
+<div class="section-title">
+
+<span>07 — Profil</span>
+
+<h2>
+Langues & qualités
+</h2>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>
+🌍 Langues
+</h3>
+
+<p>
+
+<strong>Anglais — B1</strong>
+
+<br>
+Compréhension · écriture · lecture
+
+<br><br>
+
+<strong>Espagnol — A1</strong>
+
+<br>
+Compréhension
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+🧠 Qualités
+</h3>
+
+<div class="tags">
+
+<span class="tag">
+Esprit analytique
+</span>
+
+<span class="tag">
+Rigueur
+</span>
+
+<span class="tag">
+Organisation
+</span>
+
+<span class="tag">
+Autonomie
+</span>
+
+<span class="tag">
+Curiosité
+</span>
+
+<span class="tag">
+Résolution de problèmes
+</span>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+🎯 Objectif
+</h3>
+
+<p>
+
+Mettre mes compétences techniques au service
+d'une entreprise et continuer à évoluer dans
+le développement logiciel, la data et l'IT.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
+
+
+<!-- =======================================================
+     CONTACT
+======================================================= -->
 
 <section id="contact">
-  <div class="container">
-    <div class="section-head">
-      <div class="kicker">08 · Contact</div>
-      <h2>Construisons quelque chose d'utile.</h2>
-      <p class="lead">Pour une opportunité professionnelle, un projet Data, IT ou logiciel, n'hésitez pas à me contacter.</p>
-    </div>
-    <div class="two-col">
-      <div class="card">
-        <div class="info-list">
-          <div class="info-row"><strong>Téléphone</strong><a href="tel:+32495932709">+32 495 93 27 09</a></div>
-          <div class="info-row"><strong>Email</strong><a href="mailto:leurquinstephanie@gmail.com">leurquinstephanie@gmail.com</a></div>
-          <div class="info-row"><strong>GitHub</strong><a href="https://github.com/stephanieleurquin" target="_blank" rel="noopener">github.com/stephanieleurquin ↗</a></div>
-          <div class="info-row"><strong>Mobilité</strong><span>Wallonie · Bruxelles</span></div>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Domaines recherchés</h3>
-        <div class="tags">
-          <span class="tag">Data Engineer</span><span class="tag">Software Engineer</span>
-          <span class="tag">Data Analyst</span><span class="tag">IT Specialist</span>
-          <span class="tag">Python Developer</span><span class="tag">Support IT</span>
-          <span class="tag">DevOps Junior</span>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<div class="container">
+
+<div class="section-title">
+
+<span>08 — Contact</span>
+
+<h2>
+Parlons de votre projet
+</h2>
+
+<p>
+Disponible pour des opportunités en développement,
+Data Engineering, IT et logiciels.
+</p>
+
+</div>
+
+
+<div class="contact-grid">
+
+
+<a
+href="mailto:leurquinstephanie@gmail.com"
+class="card contact-card">
+
+<div class="contact-icon">
+✉️
+</div>
+
+<div>
+
+<strong>Email</strong>
+
+<span>
+leurquinstephanie@gmail.com
+</span>
+
+</div>
+
+</a>
+
+
+<a
+href="tel:+32495932709"
+class="card contact-card">
+
+<div class="contact-icon">
+📞
+</div>
+
+<div>
+
+<strong>Téléphone</strong>
+
+<span>
++32 495 93 27 09
+</span>
+
+</div>
+
+</a>
+
+
+<a
+href="https://github.com/Stephanie-VanSchoor"
+target="_blank"
+class="card contact-card">
+
+<div class="contact-icon">
+⌘
+</div>
+
+<div>
+
+<strong>GitHub</strong>
+
+<span>
+github.com/Stephanie-VanSchoor
+</span>
+
+</div>
+
+</a>
+
+
+<div class="card contact-card">
+
+<div class="contact-icon">
+📍
+</div>
+
+<div>
+
+<strong>Mobilité</strong>
+
+<span>
+Wallonie & Bruxelles
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="availability">
+
+<h3>
+Disponibilité
+</h3>
+
+<p style="margin-top:10px">
+
+<strong>Disponible immédiatement.</strong>
+
+<br><br>
+
+CDI · CDD · Article 60 · Article 61 ·
+Stage · Formation en entreprise
+
+</p>
+
+<p style="margin-top:12px;color:var(--muted)">
+
+Éligible aux dispositifs Article 60 §7 et Article 61
+sous réserve de l'accord du CPAS.
+
+</p>
+
+</div>
+
+</div>
+
 </section>
+
 </main>
 
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
 <footer>
-  <div class="container footer">
-    <span>© <span id="year"></span> Stéphanie Vanschoor</span>
-    <span>Software Engineer · Data Engineer · IT Specialist</span>
-  </div>
+
+<div class="container footer-content">
+
+<div>
+
+<strong>
+Stéphanie Vanschoor
+</strong>
+
+<br>
+
+Software Engineer · Data Engineer · IT Specialist
+
+</div>
+
+
+<div>
+
+<a
+href="https://github.com/Stephanie-VanSchoor"
+target="_blank">
+
+GitHub ↗
+
+</a>
+
+&nbsp; · &nbsp;
+
+<a
+href="https://stephanie-vanschoor.github.io/Nexora/"
+target="_blank">
+
+Nexora ↗
+
+</a>
+
+</div>
+
+
+<div>
+
+© <span id="year"></span>
+
+</div>
+
+</div>
+
 </footer>
 
-<button class="icon-btn backtop" id="backtop" aria-label="Retour en haut">↑</button>
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
 
 <script>
-const root = document.documentElement;
-const themeBtn = document.getElementById('themeBtn');
 
-const savedTheme = localStorage.getItem('cv-theme');
-if(savedTheme) root.dataset.theme = savedTheme;
+/* ===============================
+   DARK MODE
+================================ */
 
-themeBtn.addEventListener('click', () => {
-  const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-  root.dataset.theme = next;
-  localStorage.setItem('cv-theme', next);
+const themeButton =
+    document.getElementById("themeButton");
+
+const savedTheme =
+    localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+
+    document.body.classList.add("dark");
+
+    themeButton.textContent = "☀";
+
+}
+
+
+themeButton.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+    const isDark =
+        document.body.classList.contains("dark");
+
+    localStorage.setItem(
+        "theme",
+        isDark ? "dark" : "light"
+    );
+
+    themeButton.textContent =
+        isDark ? "☀" : "☾";
+
 });
 
-document.getElementById('year').textContent = new Date().getFullYear();
 
-const backtop = document.getElementById('backtop');
-window.addEventListener('scroll', () => {
-  backtop.style.display = window.scrollY > 500 ? 'block' : 'none';
-});
-backtop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+/* ===============================
+   YEAR
+================================ */
+
+document.getElementById("year")
+    .textContent = new Date().getFullYear();
+
+
+/* ===============================
+   REVEAL ANIMATION
+================================ */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform =
+                        "translateY(0)";
+
+                }
+
+            });
+
+        },
+        {
+            threshold: .08
+        }
+    );
+
+
+document
+    .querySelectorAll(".card, .nexora")
+    .forEach(element => {
+
+        element.style.opacity = "0";
+
+        element.style.transform =
+            "translateY(20px)";
+
+        element.style.transition =
+            "opacity .6s ease, transform .6s ease";
+
+        observer.observe(element);
+
+    });
+
 </script>
+
 </body>
 </html>
-'''
-
-path = Path("/mnt/data/index.html")
-path.write_text(html, encoding="utf-8")
-print(f"Fichier créé : {path}")
