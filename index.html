@@ -1,3368 +1,1724 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Stéphanie Vanschoor | Software Engineer · Data Engineer · IT Specialist</title>
-
-<meta name="description"
-content="Portfolio professionnel de Stéphanie Vanschoor — Software Engineer, Data Engineer et IT Specialist. Python, Data Engineering, ETL, Linux, DevOps, APIs, cybersécurité et Game Development.">
-
-<meta name="author" content="Stéphanie Vanschoor">
-
-<style>
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-:root {
-    --bg: #f5f7fb;
-    --surface: #ffffff;
-    --surface-alt: #eef2f7;
-
-    --text: #172033;
-    --muted: #667085;
-
-    --border: #dce2ea;
-
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-
-    --secondary: #7c3aed;
-
-    --success: #16a34a;
-
-    --dark: #0f172a;
-    --dark-card: #172033;
-
-    --shadow:
-        0 15px 40px rgba(15, 23, 42, 0.08);
-
-    --radius: 20px;
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-    background: var(--bg);
-    color: var(--text);
-
-    line-height: 1.6;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-img {
-    max-width: 100%;
-}
-
-.container {
-    width: min(1150px, 92%);
-    margin: auto;
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-header {
-    position: sticky;
-    top: 0;
-
-    z-index: 1000;
-
-    background: rgba(255,255,255,.93);
-
-    backdrop-filter: blur(15px);
-
-    border-bottom:
-        1px solid var(--border);
-}
-
-.nav {
-    min-height: 70px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 20px;
-}
-
-.logo {
-    font-size: 1.3rem;
-    font-weight: 900;
-}
-
-.logo span {
-    color: var(--primary);
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 17px;
-
-    flex-wrap: wrap;
-}
-
-nav a {
-    color: var(--muted);
-
-    font-size: .88rem;
-
-    font-weight: 700;
-
-    transition: .2s ease;
-}
-
-nav a:hover {
-    color: var(--primary);
-}
-
-.actions {
-    display: flex;
-    gap: 8px;
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.btn {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 8px;
-
-    border: none;
-
-    cursor: pointer;
-
-    padding: 11px 17px;
-
-    border-radius: 12px;
-
-    font-weight: 800;
-
-    transition: .2s ease;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-.btn-primary {
-    background: var(--primary);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: var(--primary-dark);
-}
-
-.btn-secondary {
-    background: var(--surface-alt);
-    color: var(--text);
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-    padding: 105px 0 75px;
-
-    background:
-        radial-gradient(
-            circle at 80% 15%,
-            rgba(37,99,235,.12),
-            transparent 35%
-        ),
-
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(124,58,237,.10),
-            transparent 30%
-        );
-}
-
-.available {
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 7px 13px;
-
-    margin-bottom: 22px;
-
-    border-radius: 999px;
-
-    background: #dcfce7;
-
-    color: #166534;
-
-    font-size: .84rem;
-
-    font-weight: 800;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-
-    border-radius: 50%;
-
-    background: var(--success);
-}
-
-.hero h1 {
-    font-size: clamp(2.7rem, 7vw, 5.5rem);
-
-    line-height: .98;
-
-    letter-spacing: -4px;
-
-    max-width: 900px;
-}
-
-.hero h1 span {
-    color: var(--primary);
-}
-
-.hero-subtitle {
-    margin-top: 22px;
-
-    color: var(--muted);
-
-    font-size: 1.15rem;
-
-    font-weight: 800;
-}
-
-.hero-description {
-    max-width: 780px;
-
-    margin-top: 17px;
-
-    color: var(--muted);
-
-    font-size: 1.03rem;
-}
-
-.hero-buttons {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 12px;
-
-    margin-top: 30px;
-}
-
-
-/* =========================================================
-   QUICK CARDS
-========================================================= */
-
-.quick-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 15px;
-
-    margin-top: 45px;
-}
-
-.quick-card {
-    padding: 20px;
-
-    background: var(--surface);
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 17px;
-
-    box-shadow: var(--shadow);
-}
-
-.quick-card strong {
-    display: block;
-
-    margin-bottom: 4px;
-}
-
-.quick-card small {
-    color: var(--muted);
-}
-
-
-/* =========================================================
-   SECTIONS
-========================================================= */
-
-section {
-    padding: 85px 0;
-}
-
-.section-number {
-    color: var(--primary);
-
-    font-size: .8rem;
-
-    font-weight: 900;
-
-    letter-spacing: 1.3px;
-
-    text-transform: uppercase;
-}
-
-section h2 {
-    margin: 8px 0 14px;
-
-    font-size:
-        clamp(2rem, 4vw, 3rem);
-
-    line-height: 1.1;
-
-    letter-spacing: -1px;
-}
-
-.section-intro {
-    max-width: 780px;
-
-    margin-bottom: 35px;
-
-    color: var(--muted);
-}
-
-
-/* =========================================================
-   CARDS
-========================================================= */
-
-.grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
-}
-
-.card {
-    padding: 25px;
-
-    background: var(--surface);
-
-    border:
-        1px solid var(--border);
-
-    border-radius: var(--radius);
-
-    box-shadow: var(--shadow);
-}
-
-.card h3 {
-    margin-bottom: 10px;
-}
-
-.card p {
-    color: var(--muted);
-}
-
-.tags {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 7px;
-
-    margin-top: 18px;
-}
-
-.tag {
-    padding: 5px 9px;
-
-    background: var(--surface-alt);
-
-    border-radius: 8px;
-
-    font-size: .76rem;
-
-    font-weight: 800;
-}
-
-.card-link {
-    display: inline-block;
-
-    margin-top: 20px;
-
-    color: var(--primary);
-
-    font-weight: 900;
-}
-
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-.profile-grid {
-    display: grid;
-
-    grid-template-columns:
-        1.35fr .65fr;
-
-    gap: 25px;
-}
-
-
-/* =========================================================
-   EXPERIENCE
-========================================================= */
-
-.timeline {
-    position: relative;
-
-    padding-left: 30px;
-}
-
-.timeline::before {
-    content: "";
-
-    position: absolute;
-
-    left: 7px;
-    top: 5px;
-    bottom: 5px;
-
-    width: 2px;
-
-    background: var(--border);
-}
-
-.timeline-item {
-    position: relative;
-
-    margin-bottom: 38px;
-}
-
-.timeline-item:last-child {
-    margin-bottom: 0;
-}
-
-.timeline-item::before {
-    content: "";
-
-    position: absolute;
-
-    left: -28px;
-    top: 7px;
-
-    width: 12px;
-    height: 12px;
-
-    background: var(--primary);
-
-    border-radius: 50%;
-}
-
-.timeline-date {
-    color: var(--primary);
-
-    font-size: .82rem;
-
-    font-weight: 900;
-}
-
-.timeline-item h3 {
-    margin: 5px 0;
-}
-
-.timeline-item p,
-.timeline-item li {
-    color: var(--muted);
-}
-
-.timeline-item ul {
-    padding-left: 20px;
-}
-
-
-/* =========================================================
-   SKILLS
-========================================================= */
-
-.skill {
-    margin: 20px 0;
-}
-
-.skill-top {
-    display: flex;
-
-    justify-content: space-between;
-
-    margin-bottom: 7px;
-
-    font-weight: 800;
-}
-
-.progress {
-    height: 8px;
-
-    background: var(--surface-alt);
-
-    border-radius: 999px;
-
-    overflow: hidden;
-}
-
-.progress span {
-    display: block;
-
-    height: 100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--primary),
-            var(--secondary)
-        );
-
-    border-radius: 999px;
-}
-
-
-/* =========================================================
-   NEXORA
-========================================================= */
-
-.featured {
-    position: relative;
-
-    overflow: hidden;
-
-    padding: 45px;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #111827,
-            #1e293b
-        );
-
-    border-radius: 28px;
-}
-
-.featured::after {
-    content: "NEXORA";
-
-    position: absolute;
-
-    right: -30px;
-    bottom: -35px;
-
-    font-size: 8rem;
-
-    font-weight: 900;
-
-    opacity: .04;
-}
-
-.featured p {
-    color: #cbd5e1;
-}
-
-.featured .tag {
-    color: white;
-
-    background:
-        rgba(255,255,255,.10);
-}
-
-
-/* =========================================================
-   GAME DEVELOPMENT
-========================================================= */
-
-.games {
-    color: white;
-
-    background: #0f172a;
-}
-
-.games .section-number {
-    color: #93c5fd;
-}
-
-.games .section-intro {
-    color: #94a3b8;
-}
-
-.game-card {
-    color: white;
-
-    background: #172033;
-
-    border:
-        1px solid #263248;
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.20);
-
-    transition: .25s ease;
-}
-
-.game-card:hover {
-    transform: translateY(-6px);
-
-    border-color: #475569;
-}
-
-.game-card p {
-    color: #aab6c8;
-}
-
-.game-icon {
-    width: 58px;
-    height: 58px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 18px;
-
-    background: #243047;
-
-    border-radius: 16px;
-
-    font-size: 1.8rem;
-}
-
-.game-category {
-    margin-bottom: 6px;
-
-    color: #93c5fd;
-
-    font-size: .76rem;
-
-    font-weight: 900;
-
-    letter-spacing: .8px;
-
-    text-transform: uppercase;
-}
-
-.game-card .tag {
-    color: #e2e8f0;
-
-    background: #243047;
-}
-
-.game-button {
-    display: inline-block;
-
-    margin-top: 20px;
-
-    color: #93c5fd;
-
-    font-weight: 900;
-}
-
-.games-cta {
-    margin-top: 38px;
-
-    text-align: center;
-}
-
-.games-cta p {
-    margin-bottom: 18px;
-
-    color: #94a3b8;
-}
-
-
-/* =========================================================
-   GITHUB
-========================================================= */
-
-.github-box {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 25px;
-
-    padding: 35px;
-
-    background: var(--surface);
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 24px;
-
-    box-shadow: var(--shadow);
-}
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contact-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 20px;
-}
-
-.contact-card {
-    padding: 25px;
-
-    background: var(--surface);
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 20px;
-}
-
-.contact-card span {
-    color: var(--muted);
-
-    font-size: .84rem;
-}
-
-.contact-card strong {
-    display: block;
-
-    margin-top: 5px;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    padding: 40px 0;
-
-    text-align: center;
-
-    color: var(--muted);
-
-    border-top:
-        1px solid var(--border);
-}
-
-footer a {
-    color: var(--primary);
-
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   DARK MODE
-========================================================= */
-
-body.dark {
-    --bg: #0b1120;
-
-    --surface: #111827;
-
-    --surface-alt: #1e293b;
-
-    --text: #f8fafc;
-
-    --muted: #94a3b8;
-
-    --border: #263248;
-
-    --shadow:
-        0 15px 40px rgba(0,0,0,.25);
-}
-
-body.dark header {
-    background:
-        rgba(11,17,32,.93);
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width: 950px) {
-
-    nav {
-        display: none;
-    }
-
-    .quick-grid {
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .grid {
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .profile-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-@media(max-width: 650px) {
-
-    .hero {
-        padding: 75px 0 55px;
-    }
-
-    .hero h1 {
-        letter-spacing: -2px;
-    }
-
-    .quick-grid,
-    .grid,
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-
-    section {
-        padding: 65px 0;
-    }
-
-    .featured {
-        padding: 30px 22px;
-    }
-
-    .github-box {
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-    .actions {
-        display: none;
-    }
-}
-
-
-/* =========================================================
-   PRINT
-========================================================= */
-
-@media print {
-
-    header,
-    .actions,
-    .hero-buttons,
-    .games-cta {
-        display: none !important;
-    }
-
-    body {
-        background: white;
-    }
-
-    section {
-        padding: 30px 0;
-
-        break-inside: avoid;
-    }
-
-    .card,
-    .quick-card {
-        box-shadow: none;
-    }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Portfolio de Stéphanie Vanschoor - Software Engineer, Data Engineer, IT Specialist et Game Developer">
+
+    <title>Stéphanie Vanschoor | Software Engineer · Data Engineer · IT Specialist</title>
+
+    <style>
+        :root {
+            --bg: #f6f8fc;
+            --card: #ffffff;
+            --text: #172033;
+            --muted: #64748b;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --border: #dbe3ee;
+            --dark: #0f172a;
+            --success: #16a34a;
+            --shadow: 0 15px 40px rgba(15, 23, 42, .08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 900;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            padding: 9px 11px;
+            border-radius: 10px;
+            color: #475569;
+            font-size: .9rem;
+            font-weight: 700;
+        }
+
+        nav a:hover {
+            background: #eef3f9;
+            color: var(--primary);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .small-button {
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            padding: 100px 0 80px;
+            background: linear-gradient(180deg, #ffffff, #f6f8fc);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.5fr .8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ecfdf3;
+            color: #15803d;
+            padding: 8px 13px;
+            border-radius: 999px;
+            font-size: .85rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .availability-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: clamp(2.7rem, 6vw, 5rem);
+            line-height: 1;
+            letter-spacing: -.06em;
+        }
+
+        h1 span {
+            display: block;
+            color: var(--primary);
+        }
+
+        .hero-description {
+            max-width: 780px;
+            color: var(--muted);
+            margin-top: 22px;
+            font-size: 1.08rem;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 18px;
+            border-radius: 12px;
+            font-weight: 800;
+            border: 1px solid transparent;
+        }
+
+        .button-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .button-secondary {
+            background: white;
+            border-color: var(--border);
+        }
+
+        .hero-box {
+            background: var(--dark);
+            color: white;
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-box small {
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            font-weight: 800;
+        }
+
+        .hero-box h2 {
+            margin: 8px 0 20px;
+        }
+
+        .hero-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .hero-list div {
+            padding: 13px;
+            border-radius: 12px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.1);
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 85px 0;
+        }
+
+        .section-title {
+            margin-bottom: 35px;
+        }
+
+        .section-title .number {
+            color: var(--primary);
+            font-size: .82rem;
+            font-weight: 900;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -.04em;
+            margin-top: 5px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+            max-width: 800px;
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 27px;
+            box-shadow: 0 8px 25px rgba(15,23,42,.035);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.18rem;
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skill {
+            margin-bottom: 18px;
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+        }
+
+        .progress {
+            height: 8px;
+            background: #e7edf5;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress span {
+            display: block;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .tag {
+            background: #eef3f9;
+            color: #334155;
+            padding: 7px 10px;
+            border-radius: 9px;
+            font-size: .82rem;
+            font-weight: 750;
+        }
+
+        /* =========================
+           EXPERIENCE
+        ========================= */
+
+        .timeline {
+            display: grid;
+            gap: 22px;
+        }
+
+        .timeline-item {
+            position: relative;
+            border-left: 2px solid #dbe4ef;
+            padding-left: 22px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .date {
+            color: var(--primary);
+            font-size: .82rem;
+            font-weight: 900;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .project {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .project-footer {
+            margin-top: auto;
+        }
+
+        .project-link {
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        /* =========================
+           GAMES
+        ========================= */
+
+        #jeux {
+            background: #f0f5fb;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .game {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 23px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .game-icon {
+            font-size: 2.2rem;
+        }
+
+        .game p {
+            color: var(--muted);
+            font-size: .92rem;
+        }
+
+        .game .button {
+            margin-top: auto;
+        }
+
+        /* =========================
+           NEXORA
+        ========================= */
+
+        .nexora {
+            background: linear-gradient(135deg, #0f172a, #172554);
+            color: white;
+            border-radius: 30px;
+            padding: 42px;
+            box-shadow: var(--shadow);
+        }
+
+        .nexora p {
+            color: #cbd5e1;
+            max-width: 800px;
+        }
+
+        .nexora .tag {
+            background: rgba(255,255,255,.1);
+            color: #e2e8f0;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            background: var(--dark);
+            color: white;
+            border-radius: 30px;
+            padding: 45px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact p {
+            color: #cbd5e1;
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 13px;
+        }
+
+        .contact-list a {
+            font-weight: 800;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 35px 0;
+            color: var(--muted);
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* =========================
+           DARK MODE
+        ========================= */
+
+        body.dark {
+            --bg: #08111f;
+            --card: #0f1b2d;
+            --text: #edf2f7;
+            --muted: #9aa9bc;
+            --border: #26364d;
+        }
+
+        body.dark header {
+            background: rgba(8,17,31,.95);
+        }
+
+        body.dark .hero {
+            background: linear-gradient(180deg, #0a1424, #08111f);
+        }
+
+        body.dark .button-secondary,
+        body.dark .small-button,
+        body.dark .game {
+            background: var(--card);
+            color: var(--text);
+        }
+
+        body.dark #jeux {
+            background: #0b1626;
+        }
+
+        body.dark .tag {
+            color: #dbe5f0;
+        }
+
+        body.dark .progress {
+            background: #243247;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 950px) {
+            .hero-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-3,
+            .grid-2,
+            .project-grid,
+            .games-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid-3,
+            .grid-2,
+            .project-grid,
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 60px;
+            }
+
+            .nexora,
+            .contact {
+                padding: 28px;
+            }
+        }
+
+        @media print {
+            header,
+            .buttons,
+            .header-buttons {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+            }
+
+            section {
+                padding: 35px 0;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
-
-<!-- ======================================================
-     HEADER
-====================================================== -->
-
 <header>
+    <div class="container navbar">
 
-<div class="container nav">
+        <a class="logo" href="#top">
+            Stéphanie<span>.</span>
+        </a>
 
-<a href="#top" class="logo">
-Stéphanie<span>.</span>
-</a>
+        <nav>
+            <a href="#profil">Profil</a>
+            <a href="#competences">Compétences</a>
+            <a href="#experience">Expérience</a>
+            <a href="#projets">Projets</a>
+            <a href="#jeux">🎮 Jeux</a>
+            <a href="#nexora">Nexora</a>
+            <a href="#github">GitHub</a>
+            <a href="#contact">Contact</a>
+        </nav>
 
-<nav>
+        <div class="header-buttons">
+            <button class="small-button" id="themeButton">☾</button>
+            <button class="small-button" onclick="window.print()">PDF</button>
+        </div>
 
-<a href="#profil">Profil</a>
-
-<a href="#competences">
-Compétences
-</a>
-
-<a href="#experience">
-Expérience
-</a>
-
-<a href="#projets">
-Projets
-</a>
-
-<a href="#jeux">
-🎮 Jeux
-</a>
-
-<a href="#nexora">
-Nexora
-</a>
-
-<a href="#github">
-GitHub
-</a>
-
-<a href="#contact">
-Contact
-</a>
-
-</nav>
-
-
-<div class="actions">
-
-<button
-class="btn btn-secondary"
-onclick="toggleDark()">
-
-☾
-
-</button>
-
-<button
-class="btn btn-primary"
-onclick="window.print()">
-
-PDF
-
-</button>
-
-</div>
-
-</div>
-
+    </div>
 </header>
-
-
 
 <main id="top">
 
-
-<!-- ======================================================
+<!-- =========================
      HERO
-====================================================== -->
+========================= -->
 
 <section class="hero">
 
-<div class="container">
-
-<div class="available">
-
-<span class="dot"></span>
-
-Disponible immédiatement
-
-</div>
-
-
-<h1>
-
-Software Engineer
-
-<br>
-
-<span>Data Engineer</span>
-
-<br>
-
-& IT Specialist
-
-</h1>
-
-
-<p class="hero-subtitle">
-
-Python • Data Engineering • ETL • Linux • Cloud • DevOps
-
-</p>
-
-
-<p class="hero-description">
-
-Je développe des applications, APIs, pipelines de données,
-dashboards, outils métiers et projets interactifs orientés
-vers des besoins concrets.
-
-</p>
-
-
-<div class="hero-buttons">
-
-
-<a
-class="btn btn-primary"
-href="mailto:leurquinstephanie@gmail.com">
-
-✉ Me contacter
-
-</a>
-
-
-<a
-class="btn btn-secondary"
-href="https://github.com/Stephanie-VanSchoor"
-target="_blank"
-rel="noopener">
-
-⌘ GitHub
-
-</a>
-
-
-<a
-class="btn btn-secondary"
-href="https://stvan.itch.io/"
-target="_blank"
-rel="noopener">
-
-🎮 Mes jeux
-
-</a>
-
-
-<a
-class="btn btn-secondary"
-href="https://stephanie-vanschoor.github.io/Nexora/"
-target="_blank"
-rel="noopener">
-
-🚀 Nexora
-
-</a>
-
-</div>
-
-
-
-<div class="quick-grid">
-
-
-<div class="quick-card">
-
-<strong>
-🐍 Python / Data
-</strong>
-
-<small>
-ETL · Pandas · Machine Learning
-</small>
-
-</div>
-
-
-<div class="quick-card">
-
-<strong>
-⚙️ Backend / API
-</strong>
-
-<small>
-Flask · REST · SQL
-</small>
-
-</div>
-
-
-<div class="quick-card">
-
-<strong>
-☁️ DevOps
-</strong>
-
-<small>
-Docker · CI/CD · Linux
-</small>
-
-</div>
-
-
-<div class="quick-card">
-
-<strong>
-🎮 Game Development
-</strong>
-
-<small>
-Jeux publiés · itch.io
-</small>
-
-</div>
-
-
-</div>
-
-</div>
+    <div class="container hero-grid">
+
+        <div>
+
+            <div class="availability">
+                <span class="availability-dot"></span>
+                Disponible immédiatement
+            </div>
+
+            <h1>
+                Software Engineer
+                <span>Data Engineer</span>
+                &amp; IT Specialist
+            </h1>
+
+            <p class="hero-description">
+                Python • Data Engineering • ETL • Linux • Cloud • DevOps
+            </p>
+
+            <p class="hero-description">
+                Développement d'applications, APIs, pipelines de données,
+                dashboards, outils informatiques et projets interactifs.
+            </p>
+
+            <div class="buttons">
+
+                <a class="button button-primary"
+                   href="mailto:leurquinstephanie@gmail.com">
+                    ✉ Me contacter
+                </a>
+
+                <a class="button button-secondary"
+                   href="https://github.com/Stephanie-VanSchoor"
+                   target="_blank"
+                   rel="noopener">
+                    ⌘ GitHub ↗
+                </a>
+
+                <a class="button button-secondary"
+                   href="https://stephanie-vanschoor.github.io/Nexora/"
+                   target="_blank"
+                   rel="noopener">
+                    🚀 Nexora ↗
+                </a>
+
+                <a class="button button-secondary"
+                   href="https://stvan.itch.io/"
+                   target="_blank"
+                   rel="noopener">
+                    🎮 Mes jeux ↗
+                </a>
+
+            </div>
+
+        </div>
+
+        <aside class="hero-box">
+
+            <small>Spécialités</small>
+
+            <h2>
+                Développement &amp; Data
+            </h2>
+
+            <div class="hero-list">
+                <div>🐍 Python / Data Science</div>
+                <div>⚙️ Flask / REST API</div>
+                <div>📊 ETL / SQL / Dashboards</div>
+                <div>🐳 Docker / CI/CD</div>
+                <div>🎮 Game Development</div>
+            </div>
+
+        </aside>
+
+    </div>
 
 </section>
 
-
-
-<!-- ======================================================
+<!-- =========================
      PROFIL
-====================================================== -->
+========================= -->
 
 <section id="profil">
 
-<div class="container">
-
-<div class="section-number">
-01 — Profil
-</div>
-
-
-<h2>
-Profil professionnel
-</h2>
-
-
-<p class="section-intro">
-
-Un profil hybride entre développement logiciel,
-Data Engineering, support informatique et création
-de projets numériques.
-
-</p>
-
-
-<div class="profile-grid">
-
-
-<div class="card">
-
-
-<h3>
-💻 Software Engineering
-</h3>
-
-<p>
-
-Développement Python, applications web,
-APIs REST, CRUD, automatisation et outils métiers.
-
-</p>
-
-
-<br>
-
-
-<h3>
-📊 Data Engineering
-</h3>
-
-<p>
-
-ETL, transformation de données, SQL,
-dashboards, analyse et automatisation de reporting.
-
-</p>
-
-
-<br>
-
-
-<h3>
-🖥️ IT Specialist
-</h3>
-
-<p>
-
-Support informatique niveau 2, Linux, Windows,
-diagnostic, maintenance et résolution d'incidents.
-
-</p>
-
-
-<br>
-
-
-<h3>
-🎮 Game Development
-</h3>
-
-<p>
-
-Création, développement et publication de jeux
-et prototypes interactifs. Une partie de mes
-réalisations est disponible publiquement sur
-
-<a
-href="https://stvan.itch.io/"
-target="_blank"
-rel="noopener"
-style="color:#2563eb;font-weight:800;">
-
-itch.io
-
-</a>.
-
-</p>
-
-
-</div>
-
-
-
-<div class="card">
-
-
-<h3>
-🎯 Objectif professionnel
-</h3>
-
-<p>
-
-Mettre mes compétences techniques au service
-d'une entreprise et continuer à évoluer dans
-le développement logiciel, la Data et l'IT.
-
-</p>
-
-
-<br>
-
-
-<h3>
-📍 Mobilité
-</h3>
-
-<p>
-
-Wallonie & Bruxelles
-
-</p>
-
-
-<br>
-
-
-<h3>
-🚀 Disponibilité
-</h3>
-
-<p>
-
-Disponible immédiatement.
-
-</p>
-
-
-<br>
-
-
-<h3>
-💡 Projets personnels
-</h3>
-
-<p>
-
-Développement de logiciels, applications,
-dashboards, APIs et jeux publiés en ligne.
-
-</p>
-
-</div>
-
-
-</div>
-
-</div>
+    <div class="container">
+
+        <div class="section-title">
+            <div class="number">01 — Profil</div>
+            <h2>Profil professionnel</h2>
+            <p>
+                Un profil hybride entre développement logiciel,
+                Data Engineering, IT et création de projets interactifs.
+            </p>
+        </div>
+
+        <div class="grid-3">
+
+            <article class="card">
+                <h3>💻 Software Engineering</h3>
+                <p>
+                    Développement Python, applications web,
+                    APIs REST, CRUD, automatisation et outils métiers.
+                </p>
+            </article>
+
+            <article class="card">
+                <h3>📊 Data Engineering</h3>
+                <p>
+                    ETL, transformation de données, SQL,
+                    dashboards, analyse et automatisation.
+                </p>
+            </article>
+
+            <article class="card">
+                <h3>🖥 IT Specialist</h3>
+                <p>
+                    Support informatique, Linux, Windows,
+                    diagnostic, maintenance et résolution d'incidents.
+                </p>
+            </article>
+
+            <!-- GAME DEVELOPMENT -->
+            <article class="card">
+
+                <h3>🎮 Game Development</h3>
+
+                <p>
+                    Création, développement et publication de jeux
+                    et prototypes interactifs.
+                    Une partie de mes réalisations est disponible
+                    publiquement sur
+                    <a
+                        href="https://stvan.itch.io/"
+                        target="_blank"
+                        rel="noopener"
+                        style="color:#2563eb;font-weight:800;">
+                        itch.io
+                    </a>.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
 
 </section>
 
-
-
-<!-- ======================================================
+<!-- =========================
      COMPETENCES
-====================================================== -->
+========================= -->
 
 <section id="competences">
 
-<div class="container">
-
-<div class="section-number">
-02 — Compétences
-</div>
-
-
-<h2>
-Stack technique
-</h2>
-
-
-<p class="section-intro">
-
-Principales compétences développées à travers
-mes formations, expériences et projets personnels.
-
-</p>
-
-
-<div class="grid">
-
-
-<div class="card">
-
-
-<h3>
-🐍 Python & Data
-</h3>
-
-
-<div class="skill">
-
-<div class="skill-top">
-
-<span>
-Pandas
-</span>
-
-<span>
-95%
-</span>
-
-</div>
-
-<div class="progress">
-
-<span style="width:95%"></span>
-
-</div>
-
-</div>
-
-
-<div class="skill">
-
-<div class="skill-top">
-
-<span>
-Machine Learning Python
-</span>
-
-<span>
-92%
-</span>
-
-</div>
-
-<div class="progress">
-
-<span style="width:92%"></span>
-
-</div>
-
-</div>
-
-
-<div class="skill">
-
-<div class="skill-top">
-
-<span>
-Data Analytics
-</span>
-
-<span>
-88%
-</span>
-
-</div>
-
-<div class="progress">
-
-<span style="width:88%"></span>
-
-</div>
-
-</div>
-
-
-<div class="skill">
-
-<div class="skill-top">
-
-<span>
-Python Data Science
-</span>
-
-<span>
-86%
-</span>
-
-</div>
-
-<div class="progress">
-
-<span style="width:86%"></span>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-
-<div class="card">
-
-
-<h3>
-⚙️ DevOps & Backend
-</h3>
-
-
-<div class="skill">
-
-<div class="skill-top">
-
-<span>
-GitHub
-</span>
-
-<span>
-92%
-</span>
-
-</div>
-
-<div class="progress">
-
-<span style="width:92%"></span>
-
-</div>
-
-</div>
-
-
-<div class="skill">
-
-<div class="skill-top">
-
-<span>
-DevOps
-</span>
-
-<span>
-84%
-</span>
-
-</div>
-
-<div class="progress">
-
-<span style="width:84%"></span>
-
-</div>
-
-</div>
-
-
-<div class="skill">
-
-<div class="skill-top">
-
-<span>
-Jenkins
-</span>
-
-<span>
-84%
-</span>
-
-</div>
-
-<div class="progress">
-
-<span style="width:84%"></span>
-
-</div>
-
-</div>
-
-
-<div class="skill">
-
-<div class="skill-top">
-
-<span>
-SQL
-</span>
-
-<span>
-80%
-</span>
-
-</div>
-
-<div class="progress">
-
-<span style="width:80%"></span>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-
-<div class="card">
-
-
-<h3>
-🧰 Technologies
-</h3>
-
-
-<div class="tags">
-
-<span class="tag">Python</span>
-
-<span class="tag">Pandas</span>
-
-<span class="tag">NumPy</span>
-
-<span class="tag">SQL</span>
-
-<span class="tag">Flask</span>
-
-<span class="tag">Streamlit</span>
-
-<span class="tag">Docker</span>
-
-<span class="tag">GitHub Actions</span>
-
-<span class="tag">Linux</span>
-
-<span class="tag">Windows</span>
-
-<span class="tag">REST API</span>
-
-<span class="tag">SQLite</span>
-
-<span class="tag">PostgreSQL</span>
-
-<span class="tag">Matplotlib</span>
-
-<span class="tag">Plotly</span>
-
-<span class="tag">Cybersécurité</span>
-
-<span class="tag">JavaScript</span>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-</div>
+    <div class="container">
+
+        <div class="section-title">
+            <div class="number">02 — Compétences</div>
+            <h2>Stack technique</h2>
+        </div>
+
+        <div class="grid-2">
+
+            <div class="card">
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>Pandas</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="progress">
+                        <span style="width:95%"></span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>Machine Learning Python</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="progress">
+                        <span style="width:92%"></span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>Data Analytics</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="progress">
+                        <span style="width:88%"></span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>Python Data Science</span>
+                        <span>86%</span>
+                    </div>
+                    <div class="progress">
+                        <span style="width:86%"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>GitHub</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="progress">
+                        <span style="width:92%"></span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>DevOps</span>
+                        <span>84%</span>
+                    </div>
+                    <div class="progress">
+                        <span style="width:84%"></span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>Jenkins</span>
+                        <span>84%</span>
+                    </div>
+                    <div class="progress">
+                        <span style="width:84%"></span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>SQL</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress">
+                        <span style="width:80%"></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card" style="margin-top:20px">
+
+            <h3>🧰 Technologies</h3>
+
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">NumPy</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Flask</span>
+                <span class="tag">Streamlit</span>
+                <span class="tag">Docker</span>
+                <span class="tag">GitHub Actions</span>
+                <span class="tag">Linux</span>
+                <span class="tag">Windows</span>
+                <span class="tag">REST API</span>
+                <span class="tag">SQLite</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Matplotlib</span>
+                <span class="tag">Plotly</span>
+                <span class="tag">Cybersécurité</span>
+                <span class="tag">Game Development</span>
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
-
-
-<!-- ======================================================
+<!-- =========================
      EXPERIENCE
-====================================================== -->
+========================= -->
 
 <section id="experience">
 
-<div class="container">
-
-<div class="section-number">
-03 — Parcours
-</div>
-
-
-<h2>
-Expérience & Formation
-</h2>
-
-
-<div class="profile-grid">
-
-
-<div class="card timeline">
-
-
-<div class="timeline-item">
-
-<div class="timeline-date">
-2025 — Aujourd'hui
-</div>
-
-<h3>
-Technicienne Informatique
-</h3>
-
-<ul>
-
-<li>
-Support informatique utilisateurs niveau 2
-</li>
-
-<li>
-Administration Linux et Windows
-</li>
-
-<li>
-Maintenance des postes de travail
-</li>
-
-<li>
-Diagnostic et résolution d'incidents
-</li>
-
-<li>
-Optimisation des systèmes
-</li>
-
-<li>
-Assistance technique
-</li>
-
-</ul>
-
-</div>
-
-
-
-<div class="timeline-item">
-
-<div class="timeline-date">
-2022 — 2025
-</div>
-
-<h3>
-Projets Data Engineering
-</h3>
-
-<ul>
-
-<li>
-Développement Python
-</li>
-
-<li>
-Pandas / NumPy
-</li>
-
-<li>
-ETL et bases SQL
-</li>
-
-<li>
-Dashboards et visualisation
-</li>
-
-<li>
-Automatisation CSV / Excel
-</li>
-
-<li>
-Docker / Streamlit
-</li>
-
-<li>
-Machine Learning
-</li>
-
-<li>
-APIs REST
-</li>
-
-<li>
-Cybersécurité
-</li>
-
-</ul>
-
-</div>
-
-
-
-<div class="timeline-item">
-
-<div class="timeline-date">
-2009 — 2013
-</div>
-
-<h3>
-Conseillère en Communication d'Entreprise
-</h3>
-
-<p>
-Bruxelles.
-</p>
-
-</div>
-
-
-</div>
-
-
-
-<div class="card">
-
-
-<h3>
-🎓 Formation
-</h3>
-
-<br>
-
-
-<strong>
-2024 — Aujourd'hui
-</strong>
-
-<p>
-Technicien en Informatique — ECI, Liège
-</p>
-
-
-<br>
-
-
-<strong>
-2024
-</strong>
-
-<p>
-Formation Webmaster — St-Laurent, Liège
-</p>
-
-
-<br>
-
-
-<strong>
-2009 — 2013
-</strong>
-
-<p>
-Bachelier Communication d'Entreprise — Bruxelles
-</p>
-
-
-<br>
-
-
-<strong>
-2005
-</strong>
-
-<p>
-7ème Professionnelle — Organisatrice de banquet, Liège
-</p>
-
-</div>
-
-
-</div>
-
-</div>
+    <div class="container">
+
+        <div class="section-title">
+            <div class="number">03 — Parcours</div>
+            <h2>Expérience &amp; Formation</h2>
+        </div>
+
+        <div class="grid-2">
+
+            <div class="card timeline">
+
+                <div class="timeline-item">
+                    <div class="date">2025 — Aujourd'hui</div>
+                    <h3>Technicienne Informatique</h3>
+                    <p>
+                        Support utilisateurs niveau 2,
+                        Linux, Windows, maintenance,
+                        diagnostic et résolution d'incidents.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="date">2022 — 2025</div>
+                    <h3>Projets Data Engineering</h3>
+                    <p>
+                        Python, Pandas, NumPy, ETL, SQL,
+                        dashboards, Docker, Streamlit,
+                        Machine Learning et APIs REST.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="date">2009 — 2013</div>
+                    <h3>Conseillère en Communication d’Entreprise</h3>
+                    <p>
+                        Bruxelles.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card timeline">
+
+                <div class="timeline-item">
+                    <div class="date">2024 — Aujourd'hui</div>
+                    <h3>Technicien en Informatique</h3>
+                    <p>
+                        ECI — Liège
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="date">2024</div>
+                    <h3>Formation Webmaster</h3>
+                    <p>
+                        St-Laurent — Liège
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="date">2009 — 2013</div>
+                    <h3>Bachelier Communication d’Entreprise</h3>
+                    <p>
+                        Bruxelles.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="date">2005</div>
+                    <h3>7ème Professionnelle</h3>
+                    <p>
+                        Organisatrice de banquet — Liège.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
-
-
-<!-- ======================================================
+<!-- =========================
      PROJETS
-====================================================== -->
+========================= -->
 
 <section id="projets">
 
-<div class="container">
-
-<div class="section-number">
-04 — Portfolio
-</div>
-
-
-<h2>
-Projets & logiciels
-</h2>
-
-
-<p class="section-intro">
-
-Une sélection de projets publics illustrant mes compétences
-en développement logiciel, Data Engineering, APIs,
-cybersécurité et IT.
-
-</p>
-
-
-<div class="grid">
-
-
-<div class="card">
-
-<h3>
-Data Engineering ETL Tool
-</h3>
-
-<p>
-
-Pipeline ETL développé en Python pour le traitement
-et la transformation de données.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">Python</span>
-
-<span class="tag">ETL</span>
-
-<span class="tag">Data</span>
-
-</div>
-
-<a
-class="card-link"
-href="https://github.com/Stephanie-VanSchoor/Data-Engineering-ETL-Tool"
-target="_blank"
-rel="noopener">
-
-Voir le code ↗
-
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-Fraud Detection
-</h3>
-
-<p>
-
-Application d'analyse de transactions,
-détection de fraude et calcul d'un score de risque.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">Machine Learning</span>
-
-<span class="tag">Python</span>
-
-<span class="tag">Streamlit</span>
-
-</div>
-
-<a
-class="card-link"
-href="https://github.com/Stephanie-VanSchoor/Fraude-Application"
-target="_blank"
-rel="noopener">
-
-Voir le code ↗
-
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-Business Intelligence
-</h3>
-
-<p>
-
-Dashboard orienté analyse et visualisation
-des données d'entreprise.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">BI</span>
-
-<span class="tag">Data</span>
-
-<span class="tag">Dashboard</span>
-
-</div>
-
-<a
-class="card-link"
-href="https://github.com/Stephanie-VanSchoor/Business-Intelligence-2026"
-target="_blank"
-rel="noopener">
-
-Voir le code ↗
-
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-Real-Time Weather ETL
-</h3>
-
-<p>
-
-Pipeline météo avec traitement des données,
-SQLite et dashboard Streamlit.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">ETL</span>
-
-<span class="tag">SQLite</span>
-
-<span class="tag">Streamlit</span>
-
-</div>
-
-<a
-class="card-link"
-href="https://github.com/Stephanie-VanSchoor/Real-Time-Weather-ETL-Pipeline-with-SQLite-Streamlit-Dashboard"
-target="_blank"
-rel="noopener">
-
-Voir le code ↗
-
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-Cyber App Cert
-</h3>
-
-<p>
-
-Application d'analyse et de vérification
-de certificats SSL.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">Cybersecurity</span>
-
-<span class="tag">SSL</span>
-
-<span class="tag">Python</span>
-
-</div>
-
-<a
-class="card-link"
-href="https://github.com/Stephanie-VanSchoor/Cyber-app-Cert"
-target="_blank"
-rel="noopener">
-
-Voir le code ↗
-
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-CRM API
-</h3>
-
-<p>
-
-API Python orientée gestion de données CRM
-avec architecture REST.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">Python</span>
-
-<span class="tag">REST API</span>
-
-<span class="tag">SQL</span>
-
-</div>
-
-<a
-class="card-link"
-href="https://github.com/Stephanie-VanSchoor/CRM-API"
-target="_blank"
-rel="noopener">
-
-Voir le code ↗
-
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-Task Flow PySide6
-</h3>
-
-<p>
-
-Application desktop de gestion des tâches
-développée avec Python et PySide6.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">Python</span>
-
-<span class="tag">PySide6</span>
-
-<span class="tag">Desktop</span>
-
-</div>
-
-<a
-class="card-link"
-href="https://github.com/Stephanie-VanSchoor/Task-Flow-PYSIDE6"
-target="_blank"
-rel="noopener">
-
-Voir le code ↗
-
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-CV Tools
-</h3>
-
-<p>
-
-Outil de génération automatique de CV,
-lettres et export PDF.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">Python</span>
-
-<span class="tag">PDF</span>
-
-<span class="tag">Automation</span>
-
-</div>
-
-<a
-class="card-link"
-href="https://github.com/Stephanie-VanSchoor/cvtools"
-target="_blank"
-rel="noopener">
-
-Voir le code ↗
-
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-Weather API
-</h3>
-
-<p>
-
-Projet d'exploitation d'API météo et
-de traitement de données.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">API</span>
-
-<span class="tag">Python</span>
-
-<span class="tag">Data</span>
-
-</div>
-
-<a
-class="card-link"
-href="https://github.com/Stephanie-VanSchoor/API-Weather"
-target="_blank"
-rel="noopener">
-
-Voir le code ↗
-
-</a>
-
-</div>
-
-
-</div>
-
-</div>
+    <div class="container">
+
+        <div class="section-title">
+            <div class="number">04 — Portfolio</div>
+            <h2>Projets logiciels &amp; Data</h2>
+            <p>
+                Une sélection de réalisations disponibles sur GitHub.
+            </p>
+        </div>
+
+        <div class="project-grid">
+
+            <article class="card project">
+                <h3>🔄 Data Engineering ETL Tool</h3>
+                <p>
+                    Outil de traitement et transformation
+                    de données avec Python.
+                </p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">ETL</span>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link"
+                       href="https://github.com/Stephanie-VanSchoor/Data-Engineering-ETL-Tool"
+                       target="_blank"
+                       rel="noopener">
+                        Voir sur GitHub ↗
+                    </a>
+                </div>
+            </article>
+
+            <article class="card project">
+                <h3>🕵️ Fraud Detection</h3>
+                <p>
+                    Application de détection et analyse de fraudes.
+                </p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Data</span>
+                    <span class="tag">ML</span>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link"
+                       href="https://github.com/Stephanie-VanSchoor/Fraude-Application"
+                       target="_blank"
+                       rel="noopener">
+                        Voir sur GitHub ↗
+                    </a>
+                </div>
+            </article>
+
+            <article class="card project">
+                <h3>📊 Business Intelligence</h3>
+                <p>
+                    Analyse de données et visualisation
+                    pour l'aide à la décision.
+                </p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">BI</span>
+                    <span class="tag">Dashboard</span>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link"
+                       href="https://github.com/Stephanie-VanSchoor/Business-Intelligence-2026"
+                       target="_blank"
+                       rel="noopener">
+                        Voir sur GitHub ↗
+                    </a>
+                </div>
+            </article>
+
+            <article class="card project">
+                <h3>🌦 Real-Time Weather ETL</h3>
+                <p>
+                    Pipeline ETL météo avec SQLite
+                    et dashboard Streamlit.
+                </p>
+                <div class="tags">
+                    <span class="tag">ETL</span>
+                    <span class="tag">SQLite</span>
+                    <span class="tag">Streamlit</span>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link"
+                       href="https://github.com/Stephanie-VanSchoor/Real-Time-Weather-ETL-Pipeline-with-SQLite-Streamlit-Dashboard"
+                       target="_blank"
+                       rel="noopener">
+                        Voir sur GitHub ↗
+                    </a>
+                </div>
+            </article>
+
+            <article class="card project">
+                <h3>🛡 Cyber App Cert</h3>
+                <p>
+                    Projet orienté cybersécurité
+                    et certification d'applications.
+                </p>
+                <div class="tags">
+                    <span class="tag">Cybersecurity</span>
+                    <span class="tag">Python</span>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link"
+                       href="https://github.com/Stephanie-VanSchoor/Cyber-app-Cert"
+                       target="_blank"
+                       rel="noopener">
+                        Voir sur GitHub ↗
+                    </a>
+                </div>
+            </article>
+
+            <article class="card project">
+                <h3>🔌 CRM API</h3>
+                <p>
+                    API REST destinée à la gestion d'un CRM.
+                </p>
+                <div class="tags">
+                    <span class="tag">Flask</span>
+                    <span class="tag">REST API</span>
+                    <span class="tag">Python</span>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link"
+                       href="https://github.com/Stephanie-VanSchoor/CRM-API"
+                       target="_blank"
+                       rel="noopener">
+                        Voir sur GitHub ↗
+                    </a>
+                </div>
+            </article>
+
+            <article class="card project">
+                <h3>✅ Task Flow PySide6</h3>
+                <p>
+                    Application desktop de gestion de tâches.
+                </p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">PySide6</span>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link"
+                       href="https://github.com/Stephanie-VanSchoor/Task-Flow-PYSIDE6"
+                       target="_blank"
+                       rel="noopener">
+                        Voir sur GitHub ↗
+                    </a>
+                </div>
+            </article>
+
+            <article class="card project">
+                <h3>🧰 CV Tools</h3>
+                <p>
+                    Outils et composants pour la création
+                    et gestion de CV.
+                </p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Tools</span>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link"
+                       href="https://github.com/Stephanie-VanSchoor/cvtools"
+                       target="_blank"
+                       rel="noopener">
+                        Voir sur GitHub ↗
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
 
 </section>
 
+<!-- =========================
+     JEUX
+========================= -->
 
+<section id="jeux">
 
-<!-- ======================================================
-     GAME DEVELOPMENT
-====================================================== -->
+    <div class="container">
 
-<section id="jeux" class="games">
+        <div class="section-title">
 
-<div class="container">
+            <div class="number">
+                05 — Game Development
+            </div>
 
-<div class="section-number">
-05 — Game Development
-</div>
+            <h2>
+                🎮 Jeux &amp; prototypes
+            </h2>
 
+            <p>
+                Création, développement et publication
+                de jeux interactifs.
+            </p>
 
-<h2>
-🎮 Game Development
-</h2>
+        </div>
 
+        <div class="games-grid">
 
-<p class="section-intro">
+            <!-- ECHECS -->
 
-Création, développement et publication de jeux
-et prototypes interactifs. Mes projets couvrent
-différents genres : stratégie, puzzle, aventure,
-action et jeux de cartes.
+            <article class="game">
 
-</p>
+                <div class="game-icon">
+                    ♟️
+                </div>
 
+                <h3>
+                    Echecs
+                </h3>
 
-<div class="grid">
+                <p>
+                    Jeu d'échecs complet jouable dans le navigateur,
+                    avec règles officielles, IA ou deux joueurs.
+                </p>
 
+                <a
+                    class="button button-primary"
+                    href="https://stvan.itch.io/echecs"
+                    target="_blank"
+                    rel="noopener">
 
-<!-- ECHECS -->
+                    Jouer / voir ↗
 
-<div class="card game-card">
+                </a>
 
-<div class="game-icon">
-♟️
-</div>
+            </article>
 
-<div class="game-category">
-Strategy
-</div>
+            <!-- ROYAL POKER -->
 
-<h3>
-Echecs
-</h3>
+            <article class="game">
 
-<p>
+                <div class="game-icon">
+                    🃏
+                </div>
 
-Jeu d'échecs développé comme projet interactif
-de stratégie et de logique.
+                <h3>
+                    Royal Poker Casino
+                </h3>
 
-</p>
+                <p>
+                    Texas Hold'em avec jetons virtuels
+                    et adversaires contrôlés par ordinateur.
+                </p>
 
-<div class="tags">
+                <a
+                    class="button button-primary"
+                    href="https://stvan.itch.io/royal-poker-casino"
+                    target="_blank"
+                    rel="noopener">
 
-<span class="tag">
-Strategy
-</span>
+                    Voir le jeu ↗
 
-<span class="tag">
-Game Development
-</span>
+                </a>
 
-<span class="tag">
-Web
-</span>
+            </article>
 
-</div>
+            <!-- SKY RUNNER -->
 
-<a
-class="game-button"
-href="https://stvan.itch.io/echecs"
-target="_blank"
-rel="noopener">
+            <article class="game">
 
-♟️ Jouer / voir le projet ↗
+                <div class="game-icon">
+                    🚀
+                </div>
 
-</a>
+                <h3>
+                    SKY Runner Games
+                </h3>
 
-</div>
+                <p>
+                    Jeu d'aventure et d'action
+                    publié sur itch.io.
+                </p>
 
+                <a
+                    class="button button-primary"
+                    href="https://stvan.itch.io/sky-runner-games"
+                    target="_blank"
+                    rel="noopener">
 
+                    Voir le jeu ↗
 
-<!-- ROYAL POKER -->
+                </a>
 
-<div class="card game-card">
+            </article>
 
-<div class="game-icon">
-🃏
-</div>
+            <!-- ALL GAMES -->
 
-<div class="game-category">
-Card Game
-</div>
+            <article class="game">
 
-<h3>
-Royal Poker Casino
-</h3>
+                <div class="game-icon">
+                    🎮
+                </div>
 
-<p>
+                <h3>
+                    Tous mes jeux
+                </h3>
 
-Jeu de cartes de type poker développé
-comme projet interactif.
+                <p>
+                    Retrouvez l'ensemble de mes jeux,
+                    prototypes et créations interactives.
+                </p>
 
-</p>
+                <a
+                    class="button button-primary"
+                    href="https://stvan.itch.io/"
+                    target="_blank"
+                    rel="noopener">
 
-<div class="tags">
+                    Ouvrir itch.io ↗
 
-<span class="tag">
-Poker
-</span>
+                </a>
 
-<span class="tag">
-Card Game
-</span>
+            </article>
 
-<span class="tag">
-Game Development
-</span>
+        </div>
 
-</div>
+        <div style="text-align:center;margin-top:30px">
 
-<a
-class="game-button"
-href="https://stvan.itch.io/royal-poker-casino"
-target="_blank"
-rel="noopener">
+            <a
+                class="button button-secondary"
+                href="https://stvan.itch.io/"
+                target="_blank"
+                rel="noopener">
 
-🃏 Voir le jeu ↗
+                🎮 Voir tout mon portfolio de jeux sur itch.io
 
-</a>
+            </a>
 
-</div>
+        </div>
 
-
-
-<!-- SKY RUNNER -->
-
-<div class="card game-card">
-
-<div class="game-icon">
-🚀
-</div>
-
-<div class="game-category">
-Adventure
-</div>
-
-<h3>
-SKY Runner Games
-</h3>
-
-<p>
-
-Jeu d'aventure et de plateforme avec
-déplacements, obstacles et collecte de pièces.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">
-Adventure
-</span>
-
-<span class="tag">
-Platform
-</span>
-
-<span class="tag">
-Game Development
-</span>
-
-</div>
-
-<a
-class="game-button"
-href="https://stvan.itch.io/sky-runner-games"
-target="_blank"
-rel="noopener">
-
-🚀 Voir le jeu ↗
-
-</a>
-
-</div>
-
-
-
-<!-- TETRIS -->
-
-<div class="card game-card">
-
-<div class="game-icon">
-🧩
-</div>
-
-<div class="game-category">
-Puzzle
-</div>
-
-<h3>
-Tetris
-</h3>
-
-<p>
-
-Projet de jeu de puzzle basé sur
-le concept classique de Tetris.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">
-Puzzle
-</span>
-
-<span class="tag">
-Game Development
-</span>
-
-</div>
-
-<a
-class="game-button"
-href="https://stvan.itch.io/tetris"
-target="_blank"
-rel="noopener">
-
-🧩 Voir le jeu ↗
-
-</a>
-
-</div>
-
-
-
-<!-- CITY BUILDER -->
-
-<div class="card game-card">
-
-<div class="game-icon">
-🏙️
-</div>
-
-<div class="game-category">
-Simulation
-</div>
-
-<h3>
-CITY BUILDER CHRONO
-</h3>
-
-<p>
-
-Jeu de simulation permettant
-de construire et développer une ville.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">
-Simulation
-</span>
-
-<span class="tag">
-Strategy
-</span>
-
-</div>
-
-<a
-class="game-button"
-href="https://stvan.itch.io/"
-target="_blank"
-rel="noopener">
-
-🏙️ Voir sur itch.io ↗
-
-</a>
-
-</div>
-
-
-
-<!-- BLACKWELL -->
-
-<div class="card game-card">
-
-<div class="game-icon">
-🕯️
-</div>
-
-<div class="game-category">
-Adventure
-</div>
-
-<h3>
-Les Ombres de Blackwell
-</h3>
-
-<p>
-
-Une enquête interactive basée
-sur l'exploration et la résolution
-d'un mystère.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">
-Adventure
-</span>
-
-<span class="tag">
-Investigation
-</span>
-
-</div>
-
-<a
-class="game-button"
-href="https://stvan.itch.io/"
-target="_blank"
-rel="noopener">
-
-🕯️ Voir sur itch.io ↗
-
-</a>
-
-</div>
-
-
-
-<!-- BUBBLE CRUSH -->
-
-<div class="card game-card">
-
-<div class="game-icon">
-🍬
-</div>
-
-<div class="game-category">
-Puzzle
-</div>
-
-<h3>
-Bubble Crush Saga
-</h3>
-
-<p>
-
-Jeu de puzzle basé sur
-le principe du match et de la destruction
-de bulles.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">
-Puzzle
-</span>
-
-<span class="tag">
-Match
-</span>
-
-</div>
-
-<a
-class="game-button"
-href="https://stvan.itch.io/"
-target="_blank"
-rel="noopener">
-
-🍬 Voir sur itch.io ↗
-
-</a>
-
-</div>
-
-
-
-<!-- NEON SNAKE -->
-
-<div class="card game-card">
-
-<div class="game-icon">
-🐍
-</div>
-
-<div class="game-category">
-Action
-</div>
-
-<h3>
-Neon Snake
-</h3>
-
-<p>
-
-Jeu d'action inspiré du concept Snake
-dans un univers visuel néon.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">
-Action
-</span>
-
-<span class="tag">
-Arcade
-</span>
-
-</div>
-
-<a
-class="game-button"
-href="https://stvan.itch.io/"
-target="_blank"
-rel="noopener">
-
-🐍 Voir sur itch.io ↗
-
-</a>
-
-</div>
-
-
-
-<!-- CIRCUIT -->
-
-<div class="card game-card">
-
-<div class="game-icon">
-⚡
-</div>
-
-<div class="game-category">
-Puzzle
-</div>
-
-<h3>
-Circuit
-</h3>
-
-<p>
-
-Jeu de réflexion basé sur la logique
-et la résolution de puzzles.
-
-</p>
-
-<div class="tags">
-
-<span class="tag">
-Puzzle
-</span>
-
-<span class="tag">
-Logic
-</span>
-
-</div>
-
-<a
-class="game-button"
-href="https://stvan.itch.io/"
-target="_blank"
-rel="noopener">
-
-⚡ Voir sur itch.io ↗
-
-</a>
-
-</div>
-
-
-</div>
-
-
-
-<!-- ITCH.IO CTA -->
-
-<div class="games-cta">
-
-<p>
-
-🎮 Retrouvez l'ensemble de mes jeux,
-prototypes et projets publiés sur itch.io.
-
-</p>
-
-
-<a
-class="btn btn-primary"
-href="https://stvan.itch.io/"
-target="_blank"
-rel="noopener">
-
-🎮 Voir tous mes jeux sur itch.io ↗
-
-</a>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
-
-
-<!-- ======================================================
+<!-- =========================
      NEXORA
-====================================================== -->
+========================= -->
 
 <section id="nexora">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-number">
-06 — Projet phare
-</div>
+        <div class="nexora">
 
+            <div class="section-title">
+                <div class="number" style="color:#93c5fd">
+                    06 — Projet phare
+                </div>
 
-<h2>
-Nexora
-</h2>
+                <h2>
+                    🚀 Nexora
+                </h2>
+            </div>
 
+            <p>
+                Marketplace digitale développée autour d'une architecture
+                web moderne, avec gestion de produits, comptes utilisateurs,
+                stockage et administration.
+            </p>
 
-<div class="featured">
+            <div class="tags">
 
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Supabase</span>
+                <span class="tag">Marketplace</span>
 
-<div class="game-category">
-Digital Marketplace
-</div>
+            </div>
 
+            <div class="buttons">
 
-<h2>
-🚀 NEXORA
-</h2>
+                <a
+                    class="button button-primary"
+                    href="https://stephanie-vanschoor.github.io/Nexora/"
+                    target="_blank"
+                    rel="noopener">
 
+                    🌐 Visiter Nexora ↗
 
-<p>
+                </a>
 
-Marketplace digitale développée comme
-projet logiciel personnel.
+                <a
+                    class="button button-secondary"
+                    href="https://github.com/Stephanie-VanSchoor/Nexora"
+                    target="_blank"
+                    rel="noopener">
 
-</p>
+                    ⌘ Code GitHub ↗
 
+                </a>
 
-<br>
+            </div>
 
+        </div>
 
-<p>
-
-Nexora illustre mes compétences en développement
-web, gestion de produits, authentification,
-stockage et architecture applicative.
-
-</p>
-
-
-<div class="tags">
-
-<span class="tag">
-HTML
-</span>
-
-<span class="tag">
-JavaScript
-</span>
-
-<span class="tag">
-Supabase
-</span>
-
-<span class="tag">
-Marketplace
-</span>
-
-<span class="tag">
-Web App
-</span>
-
-</div>
-
-
-<br>
-
-
-<a
-class="btn btn-primary"
-href="https://stephanie-vanschoor.github.io/Nexora/"
-target="_blank"
-rel="noopener">
-
-🚀 Ouvrir Nexora
-
-</a>
-
-
-<a
-class="btn btn-secondary"
-href="https://github.com/Stephanie-VanSchoor/Nexora"
-target="_blank"
-rel="noopener">
-
-⌘ Code source
-
-</a>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
-
-
-<!-- ======================================================
+<!-- =========================
      GITHUB
-====================================================== -->
+========================= -->
 
 <section id="github">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-number">
-07 — GitHub
-</div>
+        <div class="section-title">
 
+            <div class="number">
+                07 — GitHub
+            </div>
 
-<h2>
-Mon portfolio développeur
-</h2>
+            <h2>
+                Portfolio de développement
+            </h2>
 
+            <p>
+                Mes projets couvrent Python, Data Engineering,
+                APIs, dashboards, applications, cybersécurité,
+                logiciels et Game Development.
+            </p>
 
-<p class="section-intro">
+        </div>
 
-L'ensemble de mes projets publics,
-expérimentations et réalisations techniques
-sont disponibles sur GitHub.
+        <div class="card">
 
-</p>
+            <h3>
+                ⌘ Stephanie-VanSchoor
+            </h3>
 
+            <p>
+                Découvrez l'ensemble de mes dépôts
+                et projets publics.
+            </p>
 
-<div class="github-box">
+            <div class="buttons">
 
+                <a
+                    class="button button-primary"
+                    href="https://github.com/Stephanie-VanSchoor"
+                    target="_blank"
+                    rel="noopener">
 
-<div>
+                    Ouvrir GitHub ↗
 
-<h3>
-Stéphanie Vanschoor
-</h3>
+                </a>
 
-<p>
+            </div>
 
-Python · Data Engineering · ETL · APIs ·
-Dashboards · IT · Linux · DevOps ·
-Machine Learning · Game Development
+        </div>
 
-</p>
-
-</div>
-
-
-<a
-class="btn btn-primary"
-href="https://github.com/Stephanie-VanSchoor"
-target="_blank"
-rel="noopener">
-
-Voir mon GitHub ↗
-
-</a>
-
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
-
-
-<!-- ======================================================
+<!-- =========================
      LANGUES / QUALITES
-====================================================== -->
+========================= -->
 
 <section>
 
-<div class="container">
+    <div class="container">
 
-<div class="section-number">
-08 — Profil
-</div>
+        <div class="grid-2">
 
+            <div class="card">
 
-<h2>
-Langues & qualités
-</h2>
+                <h3>
+                    🌍 Langues
+                </h3>
 
+                <div class="tags">
 
-<div class="grid">
+                    <span class="tag">
+                        🇬🇧 Anglais — B1
+                    </span>
 
+                    <span class="tag">
+                        🇪🇸 Espagnol — A1
+                    </span>
 
-<div class="card">
+                </div>
 
-<h3>
-🌍 Langues
-</h3>
+            </div>
 
+            <div class="card">
 
-<br>
+                <h3>
+                    ⭐ Qualités
+                </h3>
 
+                <div class="tags">
 
-<strong>
-Anglais — B1
-</strong>
+                    <span class="tag">
+                        Esprit analytique
+                    </span>
 
-<p>
-Compréhension · écriture · lecture
-</p>
+                    <span class="tag">
+                        Rigueur
+                    </span>
 
+                    <span class="tag">
+                        Organisation
+                    </span>
 
-<br>
+                    <span class="tag">
+                        Autonomie
+                    </span>
 
+                    <span class="tag">
+                        Curiosité
+                    </span>
 
-<strong>
-Espagnol — A1
-</strong>
+                    <span class="tag">
+                        Résolution de problèmes
+                    </span>
 
-<p>
-Compréhension
-</p>
+                </div>
 
-</div>
+            </div>
 
+        </div>
 
-
-<div class="card">
-
-<h3>
-🧠 Qualités
-</h3>
-
-
-<div class="tags">
-
-<span class="tag">
-Esprit analytique
-</span>
-
-<span class="tag">
-Rigueur
-</span>
-
-<span class="tag">
-Organisation
-</span>
-
-<span class="tag">
-Autonomie
-</span>
-
-<span class="tag">
-Curiosité
-</span>
-
-<span class="tag">
-Résolution de problèmes
-</span>
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-🎯 Objectif professionnel
-</h3>
-
-<p>
-
-Mettre mes compétences techniques au service
-d'une entreprise et continuer à évoluer dans
-le développement logiciel, la Data et l'IT.
-
-</p>
-
-</div>
-
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
-
-
-<!-- ======================================================
+<!-- =========================
      CONTACT
-====================================================== -->
+========================= -->
 
 <section id="contact">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-number">
-09 — Contact
-</div>
+        <div class="contact">
 
+            <div class="contact-grid">
 
-<h2>
-Parlons de votre projet
-</h2>
+                <div>
 
+                    <div class="section-title">
 
-<p class="section-intro">
+                        <div
+                            class="number"
+                            style="color:#93c5fd">
 
-Disponible pour des opportunités en développement,
-Data Engineering, IT et logiciels.
+                            08 — Contact
 
-</p>
+                        </div>
 
+                        <h2>
+                            Construisons quelque chose ensemble.
+                        </h2>
 
-<div class="contact-grid">
+                    </div>
 
+                    <p>
+                        Disponible pour CDI, CDD, Article 60,
+                        Article 61, stage ou formation en entreprise.
+                        Mobilité Wallonie &amp; Bruxelles.
+                    </p>
 
-<div class="contact-card">
+                </div>
 
-<span>
-✉️ Email
-</span>
+                <div class="contact-list">
 
-<strong>
+                    <a href="mailto:leurquinstephanie@gmail.com">
+                        ✉ leurquinstephanie@gmail.com
+                    </a>
 
-<a href="mailto:leurquinstephanie@gmail.com">
+                    <a href="tel:+32495932709">
+                        ☎ +32 495 93 27 09
+                    </a>
 
-leurquinstephanie@gmail.com
+                    <a
+                        href="https://github.com/Stephanie-VanSchoor"
+                        target="_blank"
+                        rel="noopener">
 
-</a>
+                        ⌘ GitHub
 
-</strong>
+                    </a>
 
-</div>
+                    <a
+                        href="https://stvan.itch.io/"
+                        target="_blank"
+                        rel="noopener">
 
+                        🎮 itch.io — Game Development
 
+                    </a>
 
-<div class="contact-card">
+                    <a
+                        href="https://stephanie-vanschoor.github.io/Nexora/"
+                        target="_blank"
+                        rel="noopener">
 
-<span>
-📞 Téléphone
-</span>
+                        🚀 Nexora
 
-<strong>
+                    </a>
 
-<a href="tel:+32495932709">
+                </div>
 
-+32 495 93 27 09
+            </div>
 
-</a>
+        </div>
 
-</strong>
-
-</div>
-
-
-
-<div class="contact-card">
-
-<span>
-⌘ GitHub
-</span>
-
-<strong>
-
-<a
-href="https://github.com/Stephanie-VanSchoor"
-target="_blank"
-rel="noopener">
-
-github.com/Stephanie-VanSchoor
-
-</a>
-
-</strong>
-
-</div>
-
-
-
-<div class="contact-card">
-
-<span>
-🎮 Itch.io
-</span>
-
-<strong>
-
-<a
-href="https://stvan.itch.io/"
-target="_blank"
-rel="noopener">
-
-stvan.itch.io
-
-</a>
-
-</strong>
-
-</div>
-
-
-
-<div class="contact-card">
-
-<span>
-🚀 Nexora
-</span>
-
-<strong>
-
-<a
-href="https://stephanie-vanschoor.github.io/Nexora/"
-target="_blank"
-rel="noopener">
-
-Ouvrir Nexora
-
-</a>
-
-</strong>
-
-</div>
-
-
-
-<div class="contact-card">
-
-<span>
-📍 Mobilité
-</span>
-
-<strong>
-Wallonie & Bruxelles
-</strong>
-
-</div>
-
-
-
-<div class="contact-card">
-
-<span>
-🚀 Disponibilité
-</span>
-
-<strong>
-Disponible immédiatement
-</strong>
-
-</div>
-
-
-</div>
-
-
-
-<div
-class="card"
-style="margin-top:20px;">
-
-<h3>
-Types d'opportunités
-</h3>
-
-
-<div class="tags">
-
-<span class="tag">
-CDI
-</span>
-
-<span class="tag">
-CDD
-</span>
-
-<span class="tag">
-Article 60
-</span>
-
-<span class="tag">
-Article 61
-</span>
-
-<span class="tag">
-Stage
-</span>
-
-<span class="tag">
-Formation en entreprise
-</span>
-
-</div>
-
-
-<br>
-
-
-<p>
-
-Éligible aux dispositifs Article 60 §7 et Article 61
-sous réserve de l'accord du CPAS.
-
-</p>
-
-</div>
-
-
-</div>
+    </div>
 
 </section>
 
 </main>
 
-
-
-<!-- ======================================================
+<!-- =========================
      FOOTER
-====================================================== -->
+========================= -->
 
 <footer>
 
-<div class="container">
+    <div class="container footer-row">
 
-<strong>
-Stéphanie Vanschoor
-</strong>
+        <span>
+            © 2026 Stéphanie Vanschoor
+        </span>
 
+        <span>
 
-<br>
+            <a
+                href="https://github.com/Stephanie-VanSchoor"
+                target="_blank"
+                rel="noopener">
+                GitHub
+            </a>
 
+            ·
 
-Software Engineer · Data Engineer · IT Specialist
+            <a
+                href="https://stvan.itch.io/"
+                target="_blank"
+                rel="noopener">
+                itch.io
+            </a>
 
+            ·
 
-<br><br>
+            <a
+                href="https://stephanie-vanschoor.github.io/Nexora/"
+                target="_blank"
+                rel="noopener">
+                Nexora
+            </a>
 
+        </span>
 
-<a
-href="https://github.com/Stephanie-VanSchoor"
-target="_blank"
-rel="noopener">
-
-GitHub
-
-</a>
-
-
-&nbsp; · &nbsp;
-
-
-<a
-href="https://stvan.itch.io/"
-target="_blank"
-rel="noopener">
-
-🎮 Itch.io
-
-</a>
-
-
-&nbsp; · &nbsp;
-
-
-<a
-href="https://stephanie-vanschoor.github.io/Nexora/"
-target="_blank"
-rel="noopener">
-
-Nexora
-
-</a>
-
-
-<br><br>
-
-
-© <span id="year"></span>
-Stéphanie Vanschoor
-
-</div>
+    </div>
 
 </footer>
 
-
-
-<!-- ======================================================
-     JAVASCRIPT
-====================================================== -->
-
 <script>
 
-/* DARK MODE */
+    /* =========================
+       DARK MODE
+    ========================= */
 
-function toggleDark() {
+    const themeButton =
+        document.getElementById("themeButton");
 
-    document.body.classList.toggle("dark");
+    const savedTheme =
+        localStorage.getItem("portfolio-theme");
 
-    const enabled =
-        document.body.classList.contains("dark");
+    if (savedTheme === "dark") {
 
-    localStorage.setItem(
-        "darkMode",
-        enabled
-    );
-}
+        document.body.classList.add("dark");
 
+        themeButton.textContent = "☀";
 
-/* RESTORE DARK MODE */
+    }
 
-if (
-    localStorage.getItem("darkMode") === "true"
-) {
+    themeButton.addEventListener("click", function () {
 
-    document.body.classList.add("dark");
+        document.body.classList.toggle("dark");
 
-}
+        const dark =
+            document.body.classList.contains("dark");
 
+        themeButton.textContent =
+            dark ? "☀" : "☾";
 
-/* CURRENT YEAR */
+        localStorage.setItem(
+            "portfolio-theme",
+            dark ? "dark" : "light"
+        );
 
-document.getElementById("year").textContent =
-    new Date().getFullYear();
+    });
 
 </script>
-
 
 </body>
 </html>
