@@ -1,0 +1,550 @@
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CV en ligne de Stéphanie Vanschoor — Software Engineer, Data Engineer et IT Specialist.">
+<meta name="author" content="Stéphanie Vanschoor">
+<title>Stéphanie Vanschoor | Software Engineer · Data Engineer · IT Specialist</title>
+
+<style>
+:root{
+  --bg:#f5f7fb;
+  --surface:#ffffff;
+  --surface-2:#eef2f7;
+  --text:#172033;
+  --muted:#687386;
+  --accent:#315efb;
+  --accent-2:#6941c6;
+  --border:#dfe5ee;
+  --shadow:0 18px 50px rgba(25,35,55,.09);
+  --radius:22px;
+}
+[data-theme="dark"]{
+  --bg:#0b1020;
+  --surface:#11182a;
+  --surface-2:#182238;
+  --text:#edf2ff;
+  --muted:#a8b2c7;
+  --accent:#7c9cff;
+  --accent-2:#a47cff;
+  --border:#26324a;
+  --shadow:0 18px 50px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(1160px,92%);margin:auto}
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:color-mix(in srgb,var(--surface) 88%,transparent);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav{
+  min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.logo{font-weight:900;letter-spacing:-.04em;font-size:1.15rem}
+.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:20px;align-items:center}
+.navlinks a{font-size:.9rem;color:var(--muted);font-weight:650}
+.navlinks a:hover{color:var(--accent)}
+.actions{display:flex;gap:8px}
+.icon-btn{
+  border:1px solid var(--border);background:var(--surface);color:var(--text);
+  width:42px;height:42px;border-radius:12px;cursor:pointer;font-size:1rem;
+}
+.hero{padding:90px 0 55px}
+.hero-grid{display:grid;grid-template-columns:1.5fr .7fr;gap:45px;align-items:center}
+.eyebrow{
+  color:var(--accent);font-size:.8rem;font-weight:850;letter-spacing:.16em;text-transform:uppercase;
+}
+h1{font-size:clamp(2.8rem,7vw,5.8rem);line-height:.98;letter-spacing:-.065em;margin:14px 0 22px}
+.hero h1 span{display:block;color:var(--accent)}
+.hero-role{font-size:clamp(1rem,2vw,1.25rem);font-weight:750;margin-bottom:22px}
+.hero p{max-width:720px;color:var(--muted);font-size:1.04rem}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 18px;border-radius:13px;border:1px solid var(--border);
+  font-weight:800;cursor:pointer;background:var(--surface);
+}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:hover{transform:translateY(-1px)}
+.profile-card{
+  background:linear-gradient(145deg,var(--surface),var(--surface-2));
+  border:1px solid var(--border);border-radius:28px;padding:28px;box-shadow:var(--shadow);
+  text-align:center;
+}
+.avatar{
+  width:190px;height:190px;border-radius:50%;margin:0 auto 22px;
+  background:linear-gradient(145deg,var(--accent),var(--accent-2));
+  display:grid;place-items:center;color:white;font-size:4rem;font-weight:900;
+  border:7px solid var(--surface);
+  box-shadow:0 12px 35px rgba(49,94,251,.25);
+}
+.avatar small{font-size:.75rem;display:block}
+.contact-mini{display:grid;gap:10px;text-align:left;margin-top:20px}
+.contact-mini div{padding:11px 13px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.contact-mini strong{display:block;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+section{padding:70px 0}
+.section-head{margin-bottom:30px}
+.kicker{color:var(--accent);font-weight:850;font-size:.78rem;text-transform:uppercase;letter-spacing:.14em}
+h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.045em;margin:7px 0}
+.lead{color:var(--muted);max-width:760px}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:28px;
+}
+.about-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:22px}
+.highlights{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.highlight{padding:20px;border:1px solid var(--border);border-radius:16px;background:var(--surface-2)}
+.highlight b{font-size:1.7rem;display:block}
+.highlight span{color:var(--muted);font-size:.9rem}
+.timeline{display:grid;gap:18px}
+.timeline-item{position:relative;padding:25px 28px 25px 30px;border-left:3px solid var(--accent);background:var(--surface);border:1px solid var(--border);border-radius:0 var(--radius) var(--radius) 0;box-shadow:var(--shadow)}
+.date{color:var(--accent);font-size:.82rem;font-weight:850;text-transform:uppercase;letter-spacing:.06em}
+.timeline-item h3{margin:6px 0 2px;font-size:1.2rem}
+.company{font-weight:750;color:var(--muted)}
+.timeline-item ul{margin:15px 0 0;padding-left:20px}
+.timeline-item li{margin:5px 0}
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.skill{padding:18px;border:1px solid var(--border);border-radius:16px;background:var(--surface)}
+.skill-top{display:flex;justify-content:space-between;gap:15px;font-weight:800}
+.bar{height:8px;background:var(--surface-2);border-radius:20px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;width:var(--level);background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:inherit}
+.tags{display:flex;flex-wrap:wrap;gap:9px}
+.tag{padding:8px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);font-size:.85rem;font-weight:700}
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.project{padding:25px;border:1px solid var(--border);border-radius:20px;background:var(--surface);box-shadow:var(--shadow)}
+.project-icon{font-size:1.7rem}
+.project h3{margin:10px 0 7px}
+.project p{color:var(--muted);margin:0}
+.project ul{padding-left:20px;margin-bottom:0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.info-list{display:grid;gap:12px}
+.info-row{display:flex;justify-content:space-between;gap:15px;padding:12px 0;border-bottom:1px solid var(--border)}
+.info-row:last-child{border-bottom:0}
+.info-row span{color:var(--muted)}
+.availability{border:1px solid var(--border);background:linear-gradient(135deg,var(--surface),var(--surface-2));border-radius:24px;padding:30px}
+.availability strong{color:var(--accent)}
+footer{padding:35px 0;border-top:1px solid var(--border);color:var(--muted)}
+.footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.backtop{position:fixed;right:20px;bottom:20px;display:none}
+@media(max-width:850px){
+  .hero-grid,.about-grid,.two-col{grid-template-columns:1fr}
+  .hero{padding-top:55px}
+  .profile-card{max-width:520px;margin:auto}
+  .projects,.skills{grid-template-columns:1fr}
+  .navlinks{display:none}
+}
+@media(max-width:560px){
+  .container{width:min(94%,1160px)}
+  section{padding:50px 0}
+  .hero h1{font-size:3.2rem}
+  .highlights{grid-template-columns:1fr 1fr}
+  .card,.availability,.project,.timeline-item{padding:21px}
+}
+@media print{
+  .topbar,.actions,.cta,.backtop{display:none!important}
+  body{background:#fff;color:#111}
+  .card,.project,.timeline-item,.profile-card{box-shadow:none}
+  section{padding:25px 0}
+  a{text-decoration:none}
+}
+</style>
+</head>
+
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="logo" href="#accueil">SV<span>.</span></a>
+    <nav class="navlinks" aria-label="Navigation principale">
+      <a href="#profil">Profil</a>
+      <a href="#experience">Expérience</a>
+      <a href="#competences">Compétences</a>
+      <a href="#projets">Projets</a>
+      <a href="#formation">Formation</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" id="themeBtn" title="Changer le thème" aria-label="Changer le thème">◐</button>
+      <button class="icon-btn" onclick="window.print()" title="Télécharger / imprimer en PDF" aria-label="Télécharger le CV en PDF">↓</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Disponible immédiatement · Wallonie & Bruxelles</div>
+      <h1>Stéphanie<br><span>Vanschoor.</span></h1>
+      <div class="hero-role">Software Engineer · Data Engineer · IT Specialist</div>
+      <p>
+        Python • Data Engineering • ETL • SQL • Linux • Windows • Cloud • DevOps • Cybersécurité
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Me contacter</a>
+        <a class="btn" href="#projets">Voir mes projets</a>
+        <a class="btn" href="https://github.com/stephanieleurquin" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <aside class="profile-card">
+      <div class="avatar" aria-label="Photo à remplacer">SV</div>
+      <strong>Software Engineer</strong>
+      <div style="color:var(--muted)">Data · IT · Automation</div>
+      <div class="contact-mini">
+        <div><strong>Téléphone</strong><a href="tel:+32495932709">+32 495 93 27 09</a></div>
+        <div><strong>Email</strong><a href="mailto:leurquinstephanie@gmail.com">leurquinstephanie@gmail.com</a></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section id="profil">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">01 · Profil</div>
+      <h2>Une approche orientée données et solutions.</h2>
+    </div>
+    <div class="about-grid">
+      <article class="card">
+        <p>
+          Profil polyvalent combinant support informatique, administration systèmes,
+          développement Python et Data Engineering. Expérience dans le diagnostic
+          et la résolution d'incidents, l'automatisation des traitements, la création
+          de pipelines ETL, l'analyse de données et le développement d'applications web.
+        </p>
+        <p>
+          J'aime transformer un besoin concret en solution fiable, automatisée et
+          facilement exploitable, avec une attention particulière portée à la qualité,
+          à la sécurité et à la maintenabilité.
+        </p>
+      </article>
+      <div class="highlights">
+        <div class="highlight"><b>Python</b><span>Développement & Data</span></div>
+        <div class="highlight"><b>ETL</b><span>Pipelines automatisés</span></div>
+        <div class="highlight"><b>IT</b><span>Support & systèmes</span></div>
+        <div class="highlight"><b>DevOps</b><span>Docker & CI/CD</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">02 · Expérience</div>
+      <h2>Expérience professionnelle</h2>
+    </div>
+    <div class="timeline">
+      <article class="timeline-item">
+        <div class="date">2025 — aujourd'hui</div>
+        <h3>Technicienne Informatique</h3>
+        <div class="company">Support IT · Administration systèmes</div>
+        <ul>
+          <li>Support informatique utilisateurs de niveau 2.</li>
+          <li>Administration Linux et Windows.</li>
+          <li>Maintenance des postes de travail.</li>
+          <li>Diagnostic et résolution d'incidents.</li>
+          <li>Optimisation des systèmes informatiques.</li>
+          <li>Assistance technique aux utilisateurs.</li>
+        </ul>
+      </article>
+
+      <article class="timeline-item">
+        <div class="date">2022 — 2025</div>
+        <h3>Projets Data Engineering & développement</h3>
+        <div class="company">Python · Data · Automation</div>
+        <ul>
+          <li>Développement d'applications en Python.</li>
+          <li>Analyse et traitement de données avec Pandas / NumPy.</li>
+          <li>Création de pipelines ETL.</li>
+          <li>Requêtes et gestion de bases de données SQL.</li>
+          <li>Dashboards et visualisation de données.</li>
+          <li>Automatisation de tâches et reporting CSV / Excel.</li>
+          <li>Docker et développement d'applications Streamlit.</li>
+          <li>Support IT et administration Linux / Windows.</li>
+          <li>Analyse d'anomalies et notions de Machine Learning.</li>
+        </ul>
+      </article>
+
+      <article class="timeline-item">
+        <div class="date">2009 — 2013</div>
+        <h3>Conseillère en Communication d'Entreprise</h3>
+        <div class="company">Bruxelles</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="competences">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">03 · Expertise</div>
+      <h2>Compétences techniques</h2>
+    </div>
+    <div class="skills">
+      <div class="skill"><div class="skill-top"><span>GitHub</span><span>92%</span></div><div class="bar"><i style="--level:92%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>Machine Learning avec Python</span><span>92%</span></div><div class="bar"><i style="--level:92%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>Pandas</span><span>95%</span></div><div class="bar"><i style="--level:95%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>Data Analytics</span><span>88%</span></div><div class="bar"><i style="--level:88%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>Cybersécurité</span><span>88%</span></div><div class="bar"><i style="--level:88%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>Python Data Science</span><span>86%</span></div><div class="bar"><i style="--level:86%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>DevOps</span><span>84%</span></div><div class="bar"><i style="--level:84%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>Jenkins</span><span>84%</span></div><div class="bar"><i style="--level:84%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>SQL</span><span>80%</span></div><div class="bar"><i style="--level:80%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>NumPy</span><span>80%</span></div><div class="bar"><i style="--level:80%"></i></div></div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>Stack technique</h3>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+        <span class="tag">SQL</span><span class="tag">SQLite</span><span class="tag">PostgreSQL</span>
+        <span class="tag">Flask</span><span class="tag">Streamlit</span><span class="tag">Docker</span>
+        <span class="tag">GitHub Actions</span><span class="tag">Jenkins</span><span class="tag">Linux</span>
+        <span class="tag">Windows</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
+        <span class="tag">Plotly</span><span class="tag">REST API</span><span class="tag">Swagger</span>
+        <span class="tag">Postman</span><span class="tag">Machine Learning</span>
+        <span class="tag">Cybersécurité</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projets">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">04 · Portfolio</div>
+      <h2>Projets sélectionnés</h2>
+      <p class="lead">Une sélection de projets orientés Data, automatisation, cybersécurité et développement d'applications.</p>
+    </div>
+
+    <div class="projects">
+      <article class="project">
+        <div class="project-icon">🐳</div>
+        <h3>ETL Pipeline — Python + Docker</h3>
+        <p>Pipeline ETL automatisé pour traiter et structurer des données.</p>
+        <ul><li>Import CSV</li><li>Nettoyage & transformation</li><li>Export structuré</li><li>Reporting</li></ul>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">🤖</div>
+        <h3>Fraud Detection App</h3>
+        <p>Application Python de détection d'anomalies basée sur le Machine Learning.</p>
+        <ul><li>Analyse des transactions</li><li>Détection de fraude</li><li>Score de risque</li><li>Interface Streamlit</li></ul>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">📊</div>
+        <h3>Crypto Dashboard</h3>
+        <p>Dashboard Streamlit connecté à l'API CoinGecko.</p>
+        <ul><li>Prix en temps réel</li><li>Graphiques interactifs</li><li>Analyse des cryptomonnaies</li></ul>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">🏠</div>
+        <h3>Real Estate Dashboard</h3>
+        <p>Dashboard interactif consacré à l'analyse du marché immobilier.</p>
+        <ul><li>Prix</li><li>Statistiques</li><li>Analyse du marché</li><li>Visualisations</li></ul>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">🛡️</div>
+        <h3>CyberAppCert</h3>
+        <p>Application de cybersécurité pour l'analyse de certificats et d'URL.</p>
+        <ul><li>Certificats .pem, .crt, .cer</li><li>Vérification SSL</li><li>Contrôle d'URL</li><li>Vérification d'e-mails</li></ul>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">⚙️</div>
+        <h3>Reporting Automation</h3>
+        <p>Automatisation de traitements et génération de rapports Excel et CSV.</p>
+        <ul><li>Traitements automatisés</li><li>Exports Excel / CSV</li><li>Reporting récurrent</li></ul>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">📄</div>
+        <h3>Générateur de CV & lettres</h3>
+        <p>Application permettant de générer automatiquement des CV et lettres de motivation.</p>
+        <ul><li>Génération de CV</li><li>Lettres de motivation</li><li>Export PDF</li></ul>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">🧰</div>
+        <h3>Assistant IT Pro</h3>
+        <p>Application de dépannage informatique destinée aux équipes support IT.</p>
+        <ul>
+          <li>Architecture MVC</li><li>SQLite avec 200+ diagnostics</li>
+          <li>Authentification</li><li>Streamlit</li><li>Rapports PDF / Word</li>
+          <li>PyInstaller</li><li>Plans Gratuit / Pro / Business</li>
+          <li>Recherche full-text</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>API REST & DevOps</h3>
+      <p class="lead">Conception d'API RESTful avec Flask et intégration des pratiques de déploiement.</p>
+      <div class="tags">
+        <span class="tag">GET</span><span class="tag">POST</span><span class="tag">PUT</span><span class="tag">DELETE</span>
+        <span class="tag">Gestion des erreurs HTTP</span><span class="tag">Authentification</span>
+        <span class="tag">Swagger</span><span class="tag">Postman</span><span class="tag">cURL</span>
+        <span class="tag">Insomnia</span><span class="tag">SQLite / PostgreSQL</span>
+        <span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">CI/CD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="formation">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">05 · Formation</div>
+      <h2>Parcours</h2>
+    </div>
+    <div class="two-col">
+      <article class="card">
+        <h3>Formation de Technicien en Informatique</h3>
+        <p class="lead">ECI · Liège</p>
+        <strong>2024 — aujourd'hui</strong>
+      </article>
+      <article class="card">
+        <h3>Formation de Webmaster</h3>
+        <p class="lead">St-Laurent · Liège</p>
+        <strong>2024</strong>
+      </article>
+      <article class="card">
+        <h3>Bachelier en Communication d'Entreprise</h3>
+        <p class="lead">Bruxelles</p>
+        <strong>2009 — 2013</strong>
+      </article>
+      <article class="card">
+        <h3>7ème professionnelle — Organisatrice de banquet</h3>
+        <p class="lead">Liège</p>
+        <strong>2005</strong>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="two-col">
+      <article class="card">
+        <div class="kicker">06 · Langues</div>
+        <h2 style="font-size:2rem">Langues</h2>
+        <div class="info-list">
+          <div class="info-row"><strong>English</strong><span>B1 · compréhension, écriture, lecture</span></div>
+          <div class="info-row"><strong>Spanish</strong><span>A1 · compréhension</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="kicker">Qualités</div>
+        <h2 style="font-size:2rem">Atouts</h2>
+        <div class="tags">
+          <span class="tag">Esprit analytique</span><span class="tag">Rigueur</span>
+          <span class="tag">Organisation</span><span class="tag">Autonomie</span>
+          <span class="tag">Curiosité</span><span class="tag">Résolution de problèmes</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="availability">
+      <div class="kicker">07 · Disponibilité</div>
+      <h2>Prête pour un nouveau défi.</h2>
+      <p>
+        <strong>Disponible immédiatement.</strong> Mobile en Wallonie et à Bruxelles.
+        Disponible pour un CDI, CDD, contrat Article 60, Article 61, stage ou formation en entreprise.
+      </p>
+      <p>
+        Éligible aux dispositifs d'aide à l'emploi <strong>Article 60 §7 et Article 61</strong>,
+        sous réserve de l'accord du CPAS.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">08 · Contact</div>
+      <h2>Construisons quelque chose d'utile.</h2>
+      <p class="lead">Pour une opportunité professionnelle, un projet Data, IT ou logiciel, n'hésitez pas à me contacter.</p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="info-list">
+          <div class="info-row"><strong>Téléphone</strong><a href="tel:+32495932709">+32 495 93 27 09</a></div>
+          <div class="info-row"><strong>Email</strong><a href="mailto:leurquinstephanie@gmail.com">leurquinstephanie@gmail.com</a></div>
+          <div class="info-row"><strong>GitHub</strong><a href="https://github.com/stephanieleurquin" target="_blank" rel="noopener">github.com/stephanieleurquin ↗</a></div>
+          <div class="info-row"><strong>Mobilité</strong><span>Wallonie · Bruxelles</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Domaines recherchés</h3>
+        <div class="tags">
+          <span class="tag">Data Engineer</span><span class="tag">Software Engineer</span>
+          <span class="tag">Data Analyst</span><span class="tag">IT Specialist</span>
+          <span class="tag">Python Developer</span><span class="tag">Support IT</span>
+          <span class="tag">DevOps Junior</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer">
+    <span>© <span id="year"></span> Stéphanie Vanschoor</span>
+    <span>Software Engineer · Data Engineer · IT Specialist</span>
+  </div>
+</footer>
+
+<button class="icon-btn backtop" id="backtop" aria-label="Retour en haut">↑</button>
+
+<script>
+const root = document.documentElement;
+const themeBtn = document.getElementById('themeBtn');
+
+const savedTheme = localStorage.getItem('cv-theme');
+if(savedTheme) root.dataset.theme = savedTheme;
+
+themeBtn.addEventListener('click', () => {
+  const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  root.dataset.theme = next;
+  localStorage.setItem('cv-theme', next);
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const backtop = document.getElementById('backtop');
+window.addEventListener('scroll', () => {
+  backtop.style.display = window.scrollY > 500 ? 'block' : 'none';
+});
+backtop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+</body>
+</html>
+'''
+
+path = Path("/mnt/data/index.html")
+path.write_text(html, encoding="utf-8")
+print(f"Fichier créé : {path}")
