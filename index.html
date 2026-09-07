@@ -395,6 +395,19 @@
             font-weight: 900;
         }
 
+        .badge-new {
+            background: #2563eb;
+            color: white;
+            font-size: .7rem;
+            font-weight: 900;
+            padding: 3px 10px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
         /* =========================
            GAMES
         ========================= */
@@ -537,6 +550,10 @@
 
         body.dark .progress {
             background: #243247;
+        }
+
+        body.dark .badge-new {
+            background: #3b82f6;
         }
 
         /* =========================
@@ -699,7 +716,7 @@
 
             <div class="hero-list">
                 <div>🐍 Python / Data Science</div>
-                <div>⚙️ Flask / REST API</div>
+                <div>⚙️ FastAPI / Flask / REST API</div>
                 <div>📊 ETL / SQL / Dashboards</div>
                 <div>🐳 Docker / CI/CD</div>
                 <div>🎮 Game Development</div>
@@ -895,6 +912,7 @@
                 <span class="tag">Pandas</span>
                 <span class="tag">NumPy</span>
                 <span class="tag">SQL</span>
+                <span class="tag">FastAPI</span>
                 <span class="tag">Flask</span>
                 <span class="tag">Streamlit</span>
                 <span class="tag">Docker</span>
@@ -955,7 +973,7 @@
 
                 <div class="timeline-item">
                     <div class="date">2009 — 2013</div>
-                    <h3>Conseillère en Communication d’Entreprise</h3>
+                    <h3>Conseillère en Communication d'Entreprise</h3>
                     <p>
                         Bruxelles.
                     </p>
@@ -983,7 +1001,7 @@
 
                 <div class="timeline-item">
                     <div class="date">2009 — 2013</div>
-                    <h3>Bachelier Communication d’Entreprise</h3>
+                    <h3>Bachelier Communication d'Entreprise</h3>
                     <p>
                         Bruxelles.
                     </p>
@@ -1022,6 +1040,37 @@
         </div>
 
         <div class="project-grid">
+
+            <!-- ⭐ NOUVEAU PROJET : API DEVIS ⭐ -->
+            <article class="card project" style="border-color: #2563eb; border-width: 2px;">
+                <div class="badge-new">⭐ Nouveau</div>
+                <h3>📄 API Devis - Extraction Automatique</h3>
+                <p>
+                    API REST développée avec FastAPI qui extrait automatiquement
+                    les données des devis : <strong>numéro, fournisseur, date,
+                    total HT, TVA, total TTC</strong>.
+                    Solution 100% gratuite, sans IA, idéale pour les PME.
+                    <br><br>
+                    <strong>Gain de temps :</strong> 1h par jour de saisie manuelle.
+                </p>
+                <div class="tags">
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">REST API</span>
+                    <span class="tag">Regex</span>
+                    <span class="tag">PME</span>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link"
+                       href="http://localhost:8000/docs"
+                       target="_blank">
+                       ▶ Voir la démo en direct
+                    </a>
+                    <span style="margin-left:15px;color:var(--muted);font-size:.9rem;">
+                        🔧 En développement
+                    </span>
+                </div>
+            </article>
 
             <article class="card project">
                 <h3>🔄 Data Engineering ETL Tool</h3>
@@ -1365,362 +1414,6 @@
         <div class="nexora">
 
             <div class="section-title">
-                <div class="number" style="color:#93c5fd">
-                    06 — Projet phare
-                </div>
-
-                <h2>
-                    🚀 Nexora
-                </h2>
-            </div>
-
-            <p>
-                Marketplace digitale développée autour d'une architecture
-                web moderne, avec gestion de produits, comptes utilisateurs,
-                stockage et administration.
-            </p>
-
-            <div class="tags">
-
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">Supabase</span>
-                <span class="tag">Marketplace</span>
-
-            </div>
-
-            <div class="buttons">
-
-                <a
-                    class="button button-primary"
-                    href="https://stephanie-vanschoor.github.io/Nexora/"
-                    target="_blank"
-                    rel="noopener">
-
-                    🌐 Visiter Nexora ↗
-
-                </a>
-
-                <a
-                    class="button button-secondary"
-                    href="https://github.com/Stephanie-VanSchoor/Nexora"
-                    target="_blank"
-                    rel="noopener">
-
-                    ⌘ Code GitHub ↗
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =========================
-     GITHUB
-========================= -->
-
-<section id="github">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div class="number">
-                07 — GitHub
-            </div>
-
-            <h2>
-                Portfolio de développement
-            </h2>
-
-            <p>
-                Mes projets couvrent Python, Data Engineering,
-                APIs, dashboards, applications, cybersécurité,
-                logiciels et Game Development.
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <h3>
-                ⌘ Stephanie-VanSchoor
-            </h3>
-
-            <p>
-                Découvrez l'ensemble de mes dépôts
-                et projets publics.
-            </p>
-
-            <div class="buttons">
-
-                <a
-                    class="button button-primary"
-                    href="https://github.com/Stephanie-VanSchoor"
-                    target="_blank"
-                    rel="noopener">
-
-                    Ouvrir GitHub ↗
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =========================
-     LANGUES / QUALITES
-========================= -->
-
-<section>
-
-    <div class="container">
-
-        <div class="grid-2">
-
-            <div class="card">
-
-                <h3>
-                    🌍 Langues
-                </h3>
-
-                <div class="tags">
-
-                    <span class="tag">
-                        🇬🇧 Anglais — B1
-                    </span>
-
-                    <span class="tag">
-                        🇪🇸 Espagnol — A1
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h3>
-                    ⭐ Qualités
-                </h3>
-
-                <div class="tags">
-
-                    <span class="tag">
-                        Esprit analytique
-                    </span>
-
-                    <span class="tag">
-                        Rigueur
-                    </span>
-
-                    <span class="tag">
-                        Organisation
-                    </span>
-
-                    <span class="tag">
-                        Autonomie
-                    </span>
-
-                    <span class="tag">
-                        Curiosité
-                    </span>
-
-                    <span class="tag">
-                        Résolution de problèmes
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section id="contact">
-
-    <div class="container">
-
-        <div class="contact">
-
-            <div class="contact-grid">
-
-                <div>
-
-                    <div class="section-title">
-
-                        <div
-                            class="number"
-                            style="color:#93c5fd">
-
-                            08 — Contact
-
-                        </div>
-
-                        <h2>
-                            Construisons quelque chose ensemble.
-                        </h2>
-
-                    </div>
-
-                    <p>
-                        Disponible pour CDI, CDD, Article 60,
-                        Article 61, stage ou formation en entreprise.
-                        Mobilité Wallonie &amp; Bruxelles.
-                    </p>
-
-                </div>
-
-                <div class="contact-list">
-
-                    <a href="mailto:leurquinstephanie@gmail.com">
-                        ✉ leurquinstephanie@gmail.com
-                    </a>
-
-                    <a href="tel:+32495932709">
-                        ☎ +32 495 93 27 09
-                    </a>
-
-                    <a
-                        href="https://github.com/Stephanie-VanSchoor"
-                        target="_blank"
-                        rel="noopener">
-
-                        ⌘ GitHub
-
-                    </a>
-
-                    <a
-                        href="https://stvan.itch.io/"
-                        target="_blank"
-                        rel="noopener">
-
-                        🎮 itch.io — Game Development
-
-                    </a>
-
-                    <a
-                        href="https://stephanie-vanschoor.github.io/Nexora/"
-                        target="_blank"
-                        rel="noopener">
-
-                        🚀 Nexora
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    <div class="container footer-row">
-
-        <span>
-            © 2026 Stéphanie Vanschoor
-        </span>
-
-        <span>
-
-            <a
-                href="https://github.com/Stephanie-VanSchoor"
-                target="_blank"
-                rel="noopener">
-                GitHub
-            </a>
-
-            ·
-
-            <a
-                href="https://stvan.itch.io/"
-                target="_blank"
-                rel="noopener">
-                itch.io
-            </a>
-
-            ·
-
-            <a
-                href="https://stephanie-vanschoor.github.io/Nexora/"
-                target="_blank"
-                rel="noopener">
-                Nexora
-            </a>
-
-        </span>
-
-    </div>
-
-</footer>
-
-<script>
-
-    /* =========================
-       DARK MODE
-    ========================= */
-
-    const themeButton =
-        document.getElementById("themeButton");
-
-    const savedTheme =
-        localStorage.getItem("portfolio-theme");
-
-    if (savedTheme === "dark") {
-
-        document.body.classList.add("dark");
-
-        themeButton.textContent = "☀";
-
-    }
-
-    themeButton.addEventListener("click", function () {
-
-        document.body.classList.toggle("dark");
-
-        const dark =
-            document.body.classList.contains("dark");
-
-        themeButton.textContent =
-            dark ? "☀" : "☾";
-
-        localStorage.setItem(
-            "portfolio-theme",
-            dark ? "dark" : "light"
-        );
-
-    });
-
-</script>
-
-</body>
-</html>
+                <div class="number" style="
 
 
